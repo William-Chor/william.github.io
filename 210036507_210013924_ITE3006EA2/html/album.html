@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FC Barcelona Photos</title>
+    <link rel="stylesheet" type="text/css" href="../css/honours.css"/>
+    <!-- jquery -->
+	<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <!-- fontawesome字體庫 -->
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <style>
+    	body {background-image:url('../image/bg2.png');
+                  width:100;
+                  height:40%;
+                  background-size:29%;
+        }
+	    
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+		.fa {
+			font-size: 10vh;
+		}
+
+        .swiper {
+            width: 75vw;
+			margin: 0 auto;
+			vertical-align: middle;
+			position: relative;
+			overflow-x: scroll;
+			overflow-y: hidden;
+        }
+
+        .swiper-container {
+            position: relative;
+            left: 0%;
+            width: 300%;
+            height: 100%;
+            display: flex;
+            transition: left 0.4s ease-in-out;
+        }
+
+        .swiper-item {
+            width: calc(100%/3);
+        }
+
+        ::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+        }
+
+        .butLeftCls {
+            position: absolute;
+            top: 35vh;
+            left: 0.5vw;
+            color: darkblue;
+        }
+
+        .butRightCls {
+            position: absolute;
+            top: 35vh;
+            right: 0.5vw;
+            color: darkred;
+        }
+
+        .spot {
+            padding: 1% 0;
+            display: flex;
+            text-align: center;
+            height: 30px;
+            background-color: rgb(31, 30, 63);
+            color: #848484;
+        }
+
+        .spot_01 {
+            flex: 1;
+        }
+
+        .colCls {
+            color: #e61673;
+        }
+
+        .colCls:after {
+            content: '';
+            height: 5px;
+            margin: 0 auto;
+            width: 20%;
+            position: relative;
+            bottom: -50%;
+            background-color: #e61673;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div id="header" style="text-align: center;">
+        <img src="../image/BClogo.png"/> 
+        <div id="hyperlink" style="text-align: center;">
+                <a href="../index.html" style="text-decoration:none" onmouseover="style='text-decoration:underline'" onmouseout="style='text-decoration:none'">Home</a>
+                <a href="./introduction.html" style="text-decoration:none" onmouseover="style='text-decoration:underline'" onmouseout="style='text-decoration:none'">Relevantion</a>
+                <a href="./playerlist.html" style="text-decoration:none" onmouseover="style='text-decoration:underline'" onmouseout="style='text-decoration:none'">Player List</a>
+                <a href="./honours.html" style="text-decoration:none" onmouseover="style='text-decoration:underline'" onmouseout="style='text-decoration:none'">Honours</a>
+                <a href="./album.html" style="text-decoration:none" onmouseover="style='text-decoration:underline'" onmouseout="style='text-decoration:none'">Photo</a>
+                <a href="./shorts.html" style="text-decoration:none" onmouseover="style='text-decoration:underline'" onmouseout="style='text-decoration:none'">Shorts</a>
+        </div>
+    </div>
+
+    <div class="swiper">
+        <div class="swiper-container">
+            <img class="swiper-item" src="../image/album/album1.webp" ondragstart="return false;">
+            <img class="swiper-item" src="../image/album/album2.webp" ondragstart="return false;">
+            <img class="swiper-item" src="../image/album/album3.webp" ondragstart="return false;">
+        </div>
+        <div class="butLeftCls" onClick='leftFun()'><i class="fa fa-angle-left"></i></div>
+        <div class="butRightCls" onClick='rightFun()'><i class="fa fa-angle-right"></i></div>
+        <div class="spot">
+            <div class="spot_01 colCls">1</div>
+            <div class="spot_01">2</div>
+            <div class="spot_01">3</div>
+        </div>
+    </div>
+    <script th:inline="javascript">
+        $(document).ready(function () {
+			setTimeout('rightFun()', 2000);
+			setID();
+		});
+		var circleIndex = 0;
+
+		function setID() {
+			var circleList = document.getElementsByClassName('spot_01');
+			for (var i = 0; i < circleList.length; i++) {
+				circleList[i].onclick = function () {
+					arrowBack(this);
+				};
+				circleList[i].id = ('id', 'seeID_' + i);
+				circleIndex++;
+			}
+		}
+
+		function arrowBack(that) {
+			for (var i = 0; i < circleIndex; i++) {
+				if (that.id == 'seeID_' + i) {
+					$(that).addClass('colCls');
+
+					$('.swiper-container').css('left', -i * 100 + '%')
+
+					spotNum = i;
+					leftDistance = -i * 100;
+				} else if (that.id != 'seeID_' + i) {
+					$('#seeID_' + i).removeClass('colCls');
+				}
+			}
+		}
+
+		var leftDistance = 0;
+		var spotNum = 0;
+		var spotList = $('.spot_01').length;
+
+		function leftFun() {
+			if (leftDistance == 0) {
+				$('.swiper-container').css('left', '-200%');
+				leftDistance = -200;
+				spotNum = spotList - 1;
+			} else {
+				spotNum--;
+				leftDistance += 100;
+				$('.swiper-container').css('left', leftDistance + '%');
+			}
+			for (var i = 0; i < spotList; i++) {
+				if (i == spotNum) {
+					$('#seeID_' + i).addClass('colCls');
+				} else {
+					$('#seeID_' + i).removeClass('colCls');
+				}
+			}
+		}
+
+		var interval;
+
+		function rightFun() {
+
+			clearInterval(interval);
+
+			if (leftDistance == -200) {
+				leftDistance = 0;
+				spotNum = 0;
+				$('.swiper-container').css('left', '0%');
+			} else {
+				spotNum++
+				leftDistance -= 100;
+				$('.swiper-container').css('left', leftDistance + '%')
+			}
+
+			if (spotNum >= spotList) {
+				spotNum = 0
+			}
+			for (var i = 0; i < spotList; i++) {
+				if (i == spotNum) {
+					$('#seeID_' + i).addClass('colCls');
+				} else {
+					$('#seeID_' + i).removeClass('colCls');
+				}
+			}
+
+			interval = setInterval('rightFun()', 2000);
+		}
+    </script>
+</body>
+</html>

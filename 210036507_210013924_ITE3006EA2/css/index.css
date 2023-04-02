@@ -1,0 +1,217 @@
+body {
+    background-image: url(../image/bg8.png);
+    background-size:cover;
+    overflow-y:scroll;
+    background-color: rgb(24, 23, 51);
+}
+
+#INTRODUCTION, #PLAYERLIST, #HONOURS, #ALBUM, #SHORTS, #CONTACT {
+    background: rgb(255, 255, 255);
+    margin: 5px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    border: 1px solid black;
+    -webkit-box-shadow: 8px 8px 5px #333;
+}
+
+#box {
+    order: 2;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    background-color:white;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#flex-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+h3 {
+    line-height: 1;
+    -webkit-column-span: all;
+}
+
+.team p{
+    text-align:center;
+}
+.team a {
+    color: black;
+}
+
+#header h3 {
+    display: none;
+}
+
+#header {
+    order: 1;
+    height: 220px;
+    width: 105%;
+    background-color: rgb(24, 23, 51);
+    margin-top: -35px;
+    margin-left: -28px;
+    padding-right: 20px;
+    border: 2px solid rgb(48, 44, 44); 
+}
+#header img {
+    float: left;
+    margin-top: 30px;
+}
+#header div{
+    margin: auto;
+}
+
+#menu {
+    display: flex;
+    padding-left: 25%;
+}
+
+#header ul {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    background-color: rgb(24, 23, 51);
+    border: 2px solid rgb(48, 44, 44); 
+    text-shadow: 2px 2px 2px black;
+    display: inline-block;
+    font-weight: bold;
+}
+
+#header a {
+    text-decoration: none;
+    padding: 10px 30px;
+    line-height: 1.2em;
+    color: white;
+    display: block;
+}
+
+#header a:hover {
+    background-color: rgb(52, 222, 252);
+    color: black;
+    text-shadow: 2px 2px 2px white;
+    border-radius: 8px;
+}
+
+#header .sub {
+    position: absolute;
+    top: 165;
+    background-color: rgb(24, 23, 51);
+}
+
+#header .sub a:hover {
+    background-color: rgb(52, 222, 252);
+    border-radius: 8px;
+}
+
+#header .sub li {
+    overflow: hidden;
+    height: 0px;
+    width: 0px;
+    transition: height 500ms;
+}
+
+#header ul li:hover .sub li {
+    height: 40px;
+    width: auto;
+}
+
+
+#INTRODUCTION {
+    order: 2;
+    width: 25%;
+    height: auto;
+}
+
+#PLAYERLIST {
+    order: 3;
+    width: 25%;
+    height: auto;
+}
+
+#HONOURS {
+    order: 4;
+    width: 25%;
+    height: auto;
+}
+
+#ALBUM {
+    order: 5;
+    width: 25%;
+    height: auto;
+}
+
+#SHORTS {
+    order: 7;
+    width: 25%;
+    height: auto;
+}
+
+#CONTACT {
+    order: 6;
+    width: 25%;
+    height: auto;
+}
+
+#footer {
+    order: 8;
+    width: 100%;
+    height: auto;
+    background-color: rgb(24, 23, 51);
+    margin: 5px -50px 5px -66px;
+    padding-left: 32px;
+    color: white;
+    border: 2px solid rgb(48, 44, 44); 
+    text-align:center
+}
+
+::-webkit-scrollbar {
+    display: none; /* Chrome Safari */
+  }
+
+@media only screen and (max-width: 1600px) {
+    #INTRODUCTION {order: 2; width: 35%}
+    #PLAYERLIST {order: 3; width: 35% }
+    #HONOURS {order: 4; width: 35% }
+    #ALBUM {order: 5; width: 35% }
+    #SHORTS {order: 7; width: 35% }
+    #CONTACT {order: 6; width: 35% }
+
+    #flex-container {
+        -webkit-justify-content: space-around;
+    }
+
+    #header ul {
+        display: none;
+    }
+
+    #header h3 {
+        display: block;
+        color: white;
+        text-align: center;
+    }
+
+    #box {
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    #INTRODUCTION {order: 2; width: 80%}
+    #PLAYERLIST {order: 3; width: 80% }
+    #HONOURS {order: 4; width: 80% }
+    #ALBUM {order: 5; width: 80% }
+    #SHORTS {order: 6; width: 80% }
+    #CONTACT {order: 7; width: 80% }
+
+    #header ul {
+        display: none;
+    }
+
+    #header {
+        margin: -8px -50px 5px -25px;
+    }
+}
