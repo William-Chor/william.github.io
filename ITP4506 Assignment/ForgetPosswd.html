@@ -1,0 +1,129 @@
+<html>
+    <head>
+        <title>Forget Password</title>
+
+        <script type="text/javascript" src="jslib/jquery-1.11.1.js"></script>
+        <script type="text/javascript" language="javascript">
+                $(document).ready(function() {
+                    var myInput1 = document.getElementById("passwd");
+                    var myInput2 = document.getElementById("cpasswd");
+                    var letter = document.getElementById("letter");
+                    var capital = document.getElementById("capital");
+                    var number = document.getElementById("number");
+                    var length = document.getElementById("length");
+                    
+                    // When the user clicks on the password field, show the message box
+                    myInput1.onfocus = function() {
+                        document.getElementById("message").style.display = "block";
+                    }
+                    myInput2.onfocus = function() {
+                        document.getElementById("message").style.display = "block";
+                    }
+                    
+                    // When the user clicks outside of the password field, hide the message box
+                    myInput1.onblur = function() {
+                        document.getElementById("message").style.display = "none";
+                    }
+                    myInput2.onblur = function() {
+                        document.getElementById("message").style.display = "none";
+                    }
+                    
+                    // When the user starts to type something inside the password field
+                    myInput1.onkeyup = function() {
+                        // Validate lowercase letters
+                        var lowerCaseLetters = /[a-z]/g;
+                        if(myInput1.value.match(lowerCaseLetters)) {
+                            letter.classList.remove("invalid");
+                            letter.classList.add("valid");
+                        } else {
+                            letter.classList.remove("valid");
+                            letter.classList.add("invalid");
+                        }
+                    
+                    
+                        // Validate capital letters
+                        var upperCaseLetters = /[A-Z]/g;
+                        if(myInput1.value.match(upperCaseLetters)) {
+                            capital.classList.remove("invalid");
+                            capital.classList.add("valid");
+                        } else {
+                            capital.classList.remove("valid");
+                            capital.classList.add("invalid");
+                        }
+                        
+                        // Validate numbers
+                        var numbers = /[0-9]/g;
+                        if(myInput1.value.match(numbers)) {
+                            number.classList.remove("invalid");
+                            number.classList.add("valid");
+                        } else {
+                            number.classList.remove("valid");
+                            number.classList.add("invalid");
+                        }
+                        
+                        // Validate length
+                        if(myInput1.value.length >= 8) {
+                            length.classList.remove("invalid");
+                            length.classList.add("valid");
+                        } else {
+                            length.classList.remove("valid");
+                            length.classList.add("invalid");
+                        }
+                    }
+                    
+                    $("#btn").click(function() {
+                        if ($("#cpasswd").val() != $("#passwd").val()) {
+                            alert("Password Different. Please Enter Again.");
+                        } else {
+                            window.location.href='index.html';
+                        }
+                    });
+                });
+        </script>
+
+        <script>
+           
+        </script>
+
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/register.css" />
+
+    </head>
+
+    <body>
+        <div id="header" style="text-align:center; padding-bottom: 50px;">
+            <img src="images/Logo.png" width="75" height="75" style="padding-top: 25px;"/>
+            <h1>Change Password</h1>
+        </div>
+
+        <div id="form">
+            <form id="rgform">
+                <fieldset>
+                    <h2 class="fs-title">Change Your Password</h2>
+    
+                    <label>Email *</label> <br>
+                    <input type="email" id="email" name="email" placeholder="Email" required="required"></input>
+                    <br> <br>
+    
+                    <label>New Password</label> <br>
+                    <input type="password" id="passwd" name="passwd" placeholder="New Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required></input>
+                    <br> <br>
+
+                    <label>Comfirm Password</label> <br>
+                    <input type="password" id="cpasswd" name="cpasswd" placeholder="Comfirm New Password" required="required"></input>
+                    <br> <br>
+
+                    <div id="message">
+                        <h3>Password must contain the following:</h3>
+                        <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+                        <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+                        <p id="number" class="invalid">A <b>number</b></p>
+                        <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+                    </div>
+
+                    <input type="button" name="next" class="next action-button" id="btn" value="Submit" />
+                </fieldset>
+            </form>
+        </div>
+    </body>
+</html>

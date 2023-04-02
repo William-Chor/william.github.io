@@ -1,0 +1,258 @@
+<html>
+    <head>
+        <title>IVE Airlines</title>
+        <script type="text/javascript" src="jslib/jquery-1.11.1.js"></script>
+
+        <script type="text/javascript" language="javascript">
+            $(document).ready(function() {
+                // -------------------------------------------
+                //                HightLight
+                $("table tr:nth-child(even)").addClass("striped");
+                $("tr").mouseover(function(){
+                $(this).addClass("over");
+                });
+
+                $("tr").mouseout(function(){
+                $(this).removeClass("over");
+                });
+
+                // -------------------------------------------
+                //                  DrapList
+                $("#dropbtn").mouseenter(function() {
+                    $(this).css("background-color", "blue");
+                    $("#drop-content").show();
+                    $("#dropbtn").click(function() {
+                        $("#drop-content").hide();
+                        $("#dropbtn").css("background-color", "rgb(26, 98, 215)");
+                    });
+                });
+                $("#drop-content").mouseleave(function() {
+                    $("#drop-content").hide();
+                    $("#dropbtn").css("background-color", "rgb(26, 98, 215)");
+                });
+
+                // -------------------------------------------
+                //                  Search
+                $("#search").keyup(function(){
+                    $("table tr").hide().filter(":contains('"+ $(this).val() +"')").show();
+                });
+                
+                // -------------------------------------------
+                //                  Check Date
+                $(".uRecord").click(function () {
+                    var currentRow = $(this).closest("tr");
+                    var date = $(this).children(".rDate").text();
+                    if (date != "8 DEC") {
+                        alert("Cannot Edit or Cancel three days ago schedule.");
+                    } else {
+                        $("#EorC").css("display", "block");
+                        var fNo = $(".uRecord").children(".fNo").text();
+                        var price = $(".uRecord").children(".prive").text();
+                        $("#ufNo").val(fNo);
+                        $("#fClass").attr("checked",true);
+                        $("#mYes").attr("checked",true);
+                        $("#total").val("HK$" + price);
+
+                        let seat = 0, meal = 0;
+                        $('input[name="seat"]').on("click", function() {
+                            seat = parseInt($('input[name="seat"]:checked').val());
+                        });
+                        $('input[name="meal"]').on("click", function() {
+                            meal = parseInt($('input[name="meal"]:checked').val());
+                        });
+                        $("#total").mouseenter(function() {
+                            let total = parseInt(price) + seat + meal;
+                            $("#total").val(total);
+                        });
+                        $("#uBtn").click(function () {
+                            $(".uRecord").children(".seat").text($('input[name="seat"]:checked').next('label:first').html());
+                            $(".uRecord").children(".meal").text($('input[name="meal"]:checked').next('label:first').html());
+                            $(".uRecord").children(".prive").text($("#total").val());
+                            $("#EorC").css("display", "none");
+                        });
+
+                        $("#uCancel").click(function() {
+                            if (confirm("Are You sure to Cancel the Schedule?") == true) {
+                                currentRow.find(".rDate").text("Canceled");
+                                $(".uRecord").children(".fNo").text("");
+                                $(".uRecord").children(".depAir").text("");
+                                $(".uRecord").children(".desAir").text("");
+                                $(".uRecord").children(".prive").text("");
+                                $(".uRecord").children(".seat").text("");
+                                $(".uRecord").children(".meal").text("");
+                                $("#EorC").css("display", "none");
+                            } else {
+                                
+                            }
+                        });
+                    }
+                });
+            });
+
+            // -------------------------------------------
+            //                  Image Loop
+            var images = ["images/Kansai.jpg", "images/Shanghai_Pudong.jpg", "images/Taoyuan.jpg"]
+            var index = 0;
+            setInterval(function() {
+                if (index === images.length) {
+                    index = 0;
+                }
+                document.getElementById("image").src = images[index];
+                index++;
+            }, 3000);
+        </script>
+
+        <style>
+            th,td {
+                border: 1px solid;
+            }
+        </style>
+        <link rel="stylesheet" href="css/style.css"/>
+    </head>
+    <body>
+        <div id="header">
+            <img src="images/Logo.png" width="75" height="75"/>
+            <h1>IVE AIRLINES</h1>
+            
+            <div id="dropdown">                
+                <input type="button" id="dropbtn" value="william" />
+                <p id="welcome"></p>
+                <div id="drop-content">
+                    <b><label id='uNameLabel'>william</label></b>
+                    &nbsp&nbsp
+                    <a href="index.html">Logout</a> <br><br>
+                    <input type='button' id='nUserBtn' value='Manage My Account.' />
+                </div>
+            </div>
+        </div>
+
+        <div id="content">
+            <div id="mainImage">
+                <img src="images/Taoyuan.jpg" id="image">
+            </div>
+        </div>
+
+        <div class="searchBox">
+            <div id="searchH">
+                <input type="search" results="5" id="search" name="search" placeholder="What do you want to seach?" size="50"/>
+                <input type="button" value="Search" id="searchBtn" />
+            </div>
+        </div>
+
+        <div id="user-main">
+            <div id="user-info">
+                <!--User Info-->
+                <h3>Personal Information</h3>
+                <table>
+                    <tr>
+                        <td>User Name</td>
+                        <td>William</td>
+                    </tr>
+
+                    <tr>
+                        <td>Email</td>
+                        <td>william@gmail.com</td>
+                    </tr>
+
+                    <tr>
+                        <td>Full Name</td>
+                        <td>WaiKuenCHOR</td>
+                    </tr>
+
+                    <tr>
+                        <td>Phone Number</td>
+                        <td>53281013</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="user-record">
+                <h3>Record</h3>
+                <table>
+                    <tr>
+                        <th>Record Date</th>
+                        <th>Flight Number</th>
+                        <th>Departure Airport</th>
+                        <th>Destination Airport</th>
+                        <th>Estimated Ticket Price (HK$)</th>
+                        <th>Seat</th>
+                        <th>Meal</th>
+                    </tr>
+
+                    <tr class="uRecord">
+                        <td class="rDate">21 OCT</td>
+                        <td>CI0910</td>
+                        <td>Hong Kong</td>
+                        <td>Taipei (Taoyuan)</td>
+                        <td>3380</td>
+                        <td>First Class</td>
+                        <td>Yes</td>
+                    </tr>
+
+                    <tr class="uRecord">
+                        <td class="rDate">25 OCT</td>
+                        <td>CI0915</td>
+                        <td>Shang Hai</td>
+                        <td>Hong Kong</td>
+                        <td>3300</td>
+                        <td>Business Class</td>
+                        <td>Yes</td>
+                    </tr>
+
+                    <tr class="uRecord">
+                        <td class="rDate">28 OCT</td>
+                        <td>CI0976</td>
+                        <td>Shang Hai</td>
+                        <td>Japan</td>
+                        <td>2200</td>
+                        <td>Business Class</td>
+                        <td>No</td>
+                    </tr>
+
+                    <tr class="uRecord" id="newRecord">
+                        <td class="rDate">8 DEC</td>
+                        <td class="fNo">CI1099</td>
+                        <td class="depAir">Japan (Kansai)</td>
+                        <td class="desAir">Hong Kong</td>
+                        <td class="prive">7470</td>
+                        <td class="seat">First Class</td>
+                        <td class="meal">Yes</td>
+                    </tr>
+                </table>
+
+                <div id="EorC">
+                    <br><br>
+                    <form>
+                        <fieldset>
+                            <label>Fligh Number: </label>
+                            <input type="text" id="ufNo" value="" readonly /> <br><br>
+
+                            <label>Fix a Seat</label> <br>
+                            <input type="radio" id="eClass" name="seat" class="seat" value="-1500" />
+                            <label>Economy Class</label>
+                            <input type="radio" id="bClass" name="seat" class="seat" value="-1000" />
+                            <label>Business Class</label>
+                            <input type="radio" id="fClass" name="seat" class="seat" value="1500" />
+                            <label>First class</label>
+
+                            <br><br> 
+
+                            <label>Reserve the Meal</label> <br>
+                            <input type="radio" id="mYes" name="meal" class="meal" value="0" />
+                            <label>Yes</label>
+                            <input type="radio" id="mNo" name="meal" class="meal" value="-100" />
+                            <label>No</label>
+
+                            <br><br> 
+                            <label>Total: </label> <br>
+                            <input type="text" id="total" readonly value=""/>
+
+                            <input type="button" id="uBtn" value="Sumbit"/>
+                            <input type="button" id="uCancel" value="Cancel Schedule"/>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

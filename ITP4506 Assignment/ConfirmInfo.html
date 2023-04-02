@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <script type="text/javascript" src="jslib/jquery-1.11.1.js"></script>
+        <script type="text/javascript" language="javascript">
+            $(document).ready(function() {
+                $.getJSON('json/accounts.json', function(jsonData) {
+                    var accountCount = jsonData.username.length - 1;
+                    var city = jsonData.city[accountCount];
+
+                    $("fieldset").html("<h2 class='fs-title'>Confirm Information</h2>");
+                    $("fieldset").append("Welcome, " + jsonData.sex[accountCount] + " " + jsonData.lastname[accountCount]);
+                    
+                    if (city == "HK") {
+                        city = "Hong Kong";
+                    } else if (city == "SH") {
+                        city = "Shang Hai";
+                    } else if (city == "TW") {
+                        city = "Taiwan";
+                    } else if (city == "JP") {
+                        city = "Japan";
+                    }       
+                    $("fieldset").append("<br><br>City: " + city);
+
+                    $("fieldset").append("<br><br>Full Name: " + jsonData.firstname[accountCount] + " " + jsonData.lastname[accountCount]);
+                    $("fieldset").append("<br><br>Birthday: " + jsonData.dob[accountCount]);
+                    $("fieldset").append("<br><br>Email: " + jsonData.email[accountCount]);
+                    $("fieldset").append("<br><br>Phone Number: " + jsonData.phone[accountCount]);
+                    $("fieldset").append("<br><br>User Name: " + jsonData.username[accountCount]);
+
+                    $("fieldset").append("<input type='button' name='modify' class='next action-button' id='front' value='Modify' />");
+                    $("fieldset").append("<input type='button' name='next' class='next action-button' id='next' value='Confirm' />");
+                });
+
+                $("fieldset").on("click", "#next", function() {
+                    $("fieldset").html("<img src='images/success.png' width='540' height='292' style='display:block; margin:auto;'>");
+                    $("fieldset").append("<p style='text-align: center;'>Registration Successful.</p>");
+                    $("fieldset").append("<p style='text-align: center;'>Now will return to Home Page.</p>");
+                    $("fieldset").append("<p style='text-align: center;'>Please Login again.</p>");
+                    setInterval(function() {
+                        window.location.href='index.html';
+                    }, 5000)
+                });
+            });
+        </script>
+    </head>
+
+    <body>
+        <form id="rgform">
+            <fieldset>
+                
+            </fieldset>
+        </form>
+    </body>
+</html>

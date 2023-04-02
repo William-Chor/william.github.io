@@ -1,0 +1,17 @@
+Admin
+username: admin
+password: admin
+
+Operator
+username: operator1
+password: e162ty7a
+
+username: operator2
+password: s8w5pq9a
+
+Normal User
+username: william / william@gmail.com
+password: 12345678
+
+username: kim / kim@gmail.com
+password: 87654321

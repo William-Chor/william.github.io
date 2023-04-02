@@ -1,0 +1,12 @@
+{
+    "username": ["admin", "operator1", "operator2", "William", "Kim"],
+    "password": ["admin", "e162ty7a", "s8w5pq9a", "12345678", "87654321"],
+    "email": ["admin@iveairline.com", "op1@iveairline.com", "op2@iveairline.com", "william@gmail.com", "kim@gmail.com"],
+    "permis": [0, 1, 1, 3, 3],
+    "sex": ["Mr", "Ms", "Mr", "Mr", "Mr"],
+    "lastname": ["admin", "CHEN", "LI", "CHOR", "CHENG"],
+    "firstname": ["admin", "Ho", "Chi", "WaiKuen", "ChiKit"],
+    "dob": ["admin", "1989-5-20", "1997-8-7", "2002-1-1", "2000-2-2"],
+    "city": ["admin", "HK", "HK", "HK", "HK"],
+    "phone": ["admin", "96217781", "56298235", "53281013", "67321161"]
+}

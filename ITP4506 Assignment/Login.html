@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <script type="text/javascript" src="jslib/jquery-1.11.1.js"></script>
+        <script type="text/javascript" language="javascript">
+            $(document).ready(function() {
+                $("#submit").click(function() {
+                    var email = $("#memberNo").val();
+                    var password = $("#pw").val();
+                    $.getJSON('json/accounts.json', function(jsonData) {
+                        if (email == jsonData.username[0]) {
+                            if (password == jsonData.password[0]) {
+                                alert("Login Successful, Welcome Admin");
+                                window.location.href='Administrator.html';
+                            } else {
+                                alert("Wrong Password");
+                            }
+                        } else {
+                            alert("Wrong Username");
+                        }
+                    });
+                });
+            });
+        </script>
+    </head>
+
+    <body>
+        <h2>IVE Airline Login</h2>
+        <form>
+            <fieldset>
+                <br>
+                <input type="text" id="memberNo" placeholder="Email Address" size="30" /> <br>
+                <input type="password" id="pw" placeholder="Password" size="30"/> <br>
+                <br>
+                <input type="submit" id="submit" value="Login" />
+            </fieldset>
+            <a href="#">Forget Password</a> <br> <br>
+            Not a member yet? <a href="#">Join Member</a>
+        </form>
+    </body>
+</html>

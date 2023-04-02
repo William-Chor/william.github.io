@@ -1,0 +1,189 @@
+<html>
+    <head>
+        <title>Welocme to Join IVE Airline</title>
+
+        <script type="text/javascript" src="jslib/jquery-1.11.1.js"></script>
+        <script type="text/javascript" language="javascript">
+            $(document).ready(function() {
+                var sex = $(".sex").val();
+                var city = $("#city").val();
+                var lname = $("#lname").val();
+                var fname = $("#fname").val();
+                var dob = $("#dob").val();
+                var email = $("#email").val();
+                var phone = $("#phone").val();
+                var username = $("#username").val();
+                var passwd = $("#passwd").val();
+                var cpasswd = $("#cpasswd").val();
+                var accountCount = 0;
+
+                $.getJSON('json/accounts.json', function(jsonData) {
+                    accountCount = jsonData.username.length;
+                    jsonData.username[accountCount] = username;
+
+                    jsonData.password[accountCount] = passwd;
+
+                    jsonData.email[accountCount] = email;
+                    jsonData.permis[accountCount] = 3;
+                    jsonData.sex[accountCount] = sex;
+                    jsonData.lastname[accountCount] = lname;
+                    jsonData.firstname[accountCount] = fname;
+                    jsonData.dob[accountCount] = dob;
+                    jsonData.city[accountCount] = city;
+                    jsonData.phone[accountCount] = phone;
+                });
+
+                $(".next").click(function() {
+                    $("#form").load("ConfirmInfo.html");
+                });
+
+                var myInput = document.getElementById("passwd");
+                var letter = document.getElementById("letter");
+                var capital = document.getElementById("capital");
+                var number = document.getElementById("number");
+                var length = document.getElementById("length");
+                
+                // When the user clicks on the password field, show the message box
+                myInput.onfocus = function() {
+                    document.getElementById("message").style.display = "block";
+                }
+                
+                // When the user clicks outside of the password field, hide the message box
+                myInput.onblur = function() {
+                    document.getElementById("message").style.display = "none";
+                }
+                
+                // When the user starts to type something inside the password field
+                myInput.onkeyup = function() {
+                    // Validate lowercase letters
+                    var lowerCaseLetters = /[a-z]/g;
+                    if(myInput.value.match(lowerCaseLetters)) {
+                        letter.classList.remove("invalid");
+                        letter.classList.add("valid");
+                    } else {
+                        letter.classList.remove("valid");
+                        letter.classList.add("invalid");
+                    }
+                
+                
+                    // Validate capital letters
+                    var upperCaseLetters = /[A-Z]/g;
+                    if(myInput.value.match(upperCaseLetters)) {
+                        capital.classList.remove("invalid");
+                        capital.classList.add("valid");
+                    } else {
+                        capital.classList.remove("valid");
+                        capital.classList.add("invalid");
+                    }
+                    
+                    // Validate numbers
+                    var numbers = /[0-9]/g;
+                    if(myInput.value.match(numbers)) {
+                        number.classList.remove("invalid");
+                        number.classList.add("valid");
+                    } else {
+                        number.classList.remove("valid");
+                        number.classList.add("invalid");
+                    }
+                    
+                    // Validate length
+                    if(myInput.value.length >= 8) {
+                        length.classList.remove("invalid");
+                        length.classList.add("valid");
+                    } else {
+                        length.classList.remove("valid");
+                        length.classList.add("invalid");
+                    }
+                }
+            });
+        </script>
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/register.css" />
+
+    </head>
+
+    <body>
+        <div id="header" style="text-align:center; padding-bottom: 50px;">
+            <img src="images/Logo.png" width="75" height="75" style="padding-top: 25px;"/>
+            <h1>Welcome to Join the IVE Airline</h1>
+        </div>
+
+        <div id="form">
+            <form id="rgform">
+    
+                <fieldset>
+                    <h2 class="fs-title">Create Your Account</h2>
+    
+                    <label>Gender *</label> <br>
+                    <input type="radio" id="m" name="sex" value="Mr" class="sex">Mr.</input>
+                    <input type="radio" id="f" name="sex" value="Ms" class="sex">Ms.</input> 
+                    <br> <br>
+    
+                    <label>City *</label> <br>
+                    <select id="city">
+                        <option class="city" value="HK">Hong Kong</option>
+                        <option class="city" value="SH">Shang Hai</option>
+                        <option class="city" value="TW">Taiwan</option>
+                        <option class="city" value="JP">Japan</option>
+                    </select>
+                    <br> <br>
+    
+                    <p>Passport Name</p>
+                    <p>Please do not enter spaces or special characters such as "-"</p>
+                    <label>Last Name (Please same as Passport) *</label> <br>
+                    <input type="text" id="lname" placeholder="For Example: CHEN" required="required"> <br>
+                    <label>First Name (Please same as Passport) *</label> <br>
+                    <input type="text" id="fname" placeholder="For Example: HOCHI" required="required">
+                    <br> <br>
+    
+                    <label>Date of Birth *</label> <br>
+                    <input type="date" id="dob" required="required">
+                    <br> <br>
+    
+                    <label>Email *</label> <br>
+                    <input type="email" id="email" placeholder="Email" required="required">
+                    <br><br>
+    
+                    <label>Phone Number *</label> <br>
+                    <input type="text" id="phone" placeholder="Phone Number" required="required">
+                    <br><br>
+    
+                    <label>User Name *</label> <br>
+                    <input type="text" id="username" placeholder="User Name" required="required">
+                    <br><br>
+    
+                    <label>Password *</label> <br>
+                    <input type="password" id="passwd" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+                    <br> <br>
+                    <input type="password" id="cpasswd" placeholder="Confirm Password" required="required">
+                    <br> <br>
+
+                    <div id="message">
+                        <h3>Password must contain the following:</h3>
+                        <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+                        <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+                        <p id="number" class="invalid">A <b>number</b></p>
+                        <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+                    </div>
+                    
+    
+                    <h2 class="fs-title">Payment Datils</h2>
+                    <input type="radio" name="payment" value="visa" class="payment"><img src="images/visa.png" width="35" height="20"/>Visa</input>
+                    <input type="radio" name="payment" value="master" class="payment"><img src="images/mastercatd.png" width="35" height="20"/>Mastercard</input> <br>
+                    <input type="text" id="cardNo" placeholder="Card Number"> <br>
+                    <img src="images/card.png" width="35" height="25"/><br>
+                    <input type="text" id="cvc" placeholder="Card CVC"> <br>
+                    <img src="images/calendar.png" width="35" height="20"/> <br>
+                    <input type="month" id="cardDate">
+    
+                    <input type="button" name="next" class="next action-button" value="Submit" />
+                </fieldset>
+    
+                <fieldset>
+                    <h2 class="fs-title">Confirm Information</h2>
+                    <p>Welcome,</p>
+                </fieldset>
+            </form>
+        </div>
+    </body>
+</html>

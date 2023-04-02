@@ -1,0 +1,311 @@
+#header {
+    background-color: rgb(26, 98, 215);
+    margin-top: -10px;
+    margin-left: -10px;
+    margin-right: -8px;
+    padding-left: 10px;
+}
+
+#header img{
+    display: inline;
+}
+
+#header h1{
+    display: inline;
+    color: white;
+}
+
+#dropbtn{
+    float: right;
+    padding: 25px 35px;
+    color: white;
+    font-size: 25px;
+    background-color: rgb(26, 98, 215);
+    border: none;
+}
+
+#dropdown {
+    position: relative;
+    display: inline;
+}
+
+#drop-content {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-right: 100px;
+    padding-left: 100px;
+    display: none;
+    position:absolute;
+    top: 22px;
+    left: 1080px;
+    z-index: 10;
+    background-color: #f1f1f1;
+    box-shadow: 0px 8px 16px 20px rgba(0,0,0,0.2);
+}
+
+#drop-content form {
+    color: black;
+    padding: 10px 10px;
+    display: block;
+}
+
+#submit {
+    font-size: 20px;
+    padding: 0px 100px;
+    text-align: left;
+    background-color: rgb(26, 98, 215);
+    border: 0px;
+    color: white;
+}
+
+#submit:hover {
+    background-color: blue;
+}
+
+#content {
+    clear: both;
+}
+
+#welcome {
+    display: inline; 
+    float: right;
+    color: white;
+    padding: 25px 35px;
+}
+
+#content {
+    width: 90%;
+    height: 85%;
+    position: absolute;
+}
+
+#mainImage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 110%;
+    height: 600px;
+}
+#image {
+    width: 100%;
+    height: 400px;
+}
+
+#main-table {
+    padding-left: 50px;
+}
+
+#admin-h3 {
+    display: block;
+    width: 500%;
+}
+
+.admin-btn {
+    display: block;
+    padding: 10px 20px;
+    margin: 10px auto 0px auto;
+}
+
+/* body,
+html {
+    background: url("./img/lamb.jpg");
+    background-position: bottom;
+    background-size: cover;
+    background-attachment: fixed;
+} */
+ 
+.searchBox {
+    position: absolute;
+    left: 15px;
+    top: 47%;
+    width: 98%;
+    height: 80px;
+    margin: auto;
+    background: rgb(26, 98, 215);
+    box-shadow: 4px 4px 6px 3px rgba(0, 0, 0, .3);
+    border-radius: 15px;
+}
+#searchH {
+    margin-top: 10px;
+    padding-left: 40%;
+    display: inline-block;
+    color: white;
+}
+#search {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+#searchBtn, #nUserBtn {
+    background-color: orange;
+    color: white;
+    padding: 15px 35px;
+    margin-left: 10px;
+    font-size: 20px;
+    border-radius: 10px;
+}
+
+#main {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    top: 60%;
+    left: 24%;
+}
+
+#main2 {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    top: 60%;
+    left: 50%;
+}
+#addBtnA {
+    position: absolute;
+    display: none;
+}
+
+#uNameLabel {
+    font-size: 15px;
+
+}
+ 
+/* .main::before {
+    background: url("./img/lamb.jpg");
+    background-position: bottom;
+    background-size: cover;
+    background-attachment: fixed;
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    filter: blur(5px);
+    z-index: -1;
+} */
+
+body{
+    background-color:snow;
+    font-family: montserrat, arial, verdana;
+}
+
+body, td { font-size: 10pt; }
+table { background-color: black; border: 1px black solid; border-collapse: collapse; }
+th { border: 1px outset silver; background-color: black; color: white; }
+tr { background-color: white; margin: 1px; }
+tr.striped { background-color: skyblue; }
+tr.over { background-color: seagreen; }
+td { padding: 1px 8px; }
+
+#foot {
+    position: absolute;
+    background-color: rgb(26, 98, 215);
+    top: 96%;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    color: white;
+}
+
+#bugSeat, #confSeat, #payment, #editFlight, #editAccount, #addFlight, #addAccount{
+    position: absolute;
+    display: none;
+}
+
+#admin-account {
+    position: absolute;
+    display: none;
+    justify-content: center;
+}
+
+.fs-title {
+	font-size: 15px;
+	text-transform: uppercase;
+	color: #2C3E50;
+	margin-bottom: 10px;
+}
+
+#form {
+	background-color: #f1f1f1;
+	padding: 50px;
+}
+#bsform {
+	width: 1500px;
+	margin: 50px 15%;
+	position: relative;
+}
+.fs-title, #progressbar {
+    text-align: center;
+}
+#bsform fieldset {
+	background: white;
+	border: 0 none;
+	border-radius: 3px;
+	box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+	padding: 20px 30px;
+	box-sizing: border-box;
+	width: 80%;
+	margin: 0 10%;
+	
+	/*stacking fieldsets above each other*/
+	position: relative;
+}
+/*inputs*/
+#bsform input:not([type]), input[type="text"], #bsform textarea, input[type="password"] {
+	padding: 15px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	margin-bottom: 10px;
+	width: 100%;
+	box-sizing: border-box;
+	font-family: montserrat;
+	color: #2C3E50;
+	font-size: 13px;
+}
+#bookSeatBtn , #bookSeatBack, #cbookSeatBtn, #cbookSeatBack, #paymentBtn, #adminAddABtn, #adminAddBack,
+#adminBtn, #adminBack, #adminABtn, #adminABack, #adminDel, #adminADel, #add, #adminAddBtn, #login, #adminAddABack {
+    width: 100px;
+	background: #314de9;
+	font-weight: bold;
+	color: white;
+	border: 0 none;
+	border-radius: 1px;
+	cursor: pointer;
+	padding: 10px 5px;
+	margin: 10px 45%;
+}
+#bookSeatBtn:hover, #bookSeatBack:hover, #cbookSeatBtn:hover, #cbookSeatBack:hover, #paymentBtn:hover, #add:hover, #adminAddABtn:hover, #adminAddBack:hover,
+#adminBtn:hover, #adminBack:hover, #adminABtn:hover, #adminABack:hover, #adminDel:hover, #adminADel:hover, #adminAddBtn:hover, #login:hover, #adminAddABack:hover {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #314de9;
+}
+
+#user-main {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25%;
+}
+#user-info {
+    margin-left: 10%;
+    padding: 10px 50px;
+    border: 1px solid black;
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+}
+#user-record {
+    margin-right: 10%;
+    border: 1px solid black;
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+    padding: 10px 50px;
+}
+
+#EorC {
+    display: none;
+}
+
+#uBtn, #uCancel {
+    padding: 15px;
+    background-color: #314de9;
+    color: white;
+    border: 5px;
+    border-radius: 6px
+}

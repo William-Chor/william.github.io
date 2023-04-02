@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>IVE AIRLINES</title>
+	<script type="text/javascript" src="jslib/jquery-1.11.1.js"></script>
+	<link rel="stylesheet" href="css/Indexlogin.css">
+	<script type="text/javascript" language="javascript">
+		$(document).ready(function() {
+			$("#submit").click(function() {
+				var email = $("#memberNo").val();
+				var password = $("#pw").val();
+		
+				if (email == "admin") {
+					if (password == "admin") {
+						alert("Login Successful, Welcome Admin!");
+						window.location.href='Administrator.html';
+					} else { alert("Wrong Password. If you forget password, click forget password."); }
+				} else {
+					alert("Wrong Username Or Password. You may not a Member yet. Please Register.")
+				}
+			});
+		});
+	</script>
+</head>
+
+<body>
+	<div class="box">
+		<form autocomplete="off">
+			<h2>Sign in</h2>
+			<div class="inputBox">
+				<input type="text" placeholder="Enter Username" id="memberNo" name="username" required>
+				<i></i>
+			</div>
+			<div class="inputBox">
+				<input type="text" placeholder="Enter password" id="pw" name="password" required>
+				<i></i>
+			</div>
+			<div class="links">
+				<span id="my_order"><a href="Register.html">Signup</a></span>
+				<span id="order_record"><a href="index.html">Guest login</a></span>
+			</div>
+			<br>
+			<input type="button" id="submit" value="Login" ></input>
+		</form>
+	</div>
+</body>
+<video id="v1" autoplay loop muted>
+  <source src="./123.mp4" type="video/mp4"  />
+</video>
+</html>

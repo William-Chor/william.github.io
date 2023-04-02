@@ -1,0 +1,521 @@
+<html>
+    <head>
+        <title>IVE Airlines</title>
+        <script type="text/javascript" src="jslib/jquery-1.11.1.js"></script>
+
+        <script type="text/javascript" language="javascript">
+            $(document).ready(function() {
+
+                // -------------------------------------------
+                //                HightLight
+                $("table tr:nth-child(even)").addClass("striped");
+                $("tr").mouseover(function(){
+                $(this).addClass("over");
+                });
+
+                $("tr").mouseout(function(){
+                $(this).removeClass("over");
+                });
+
+                // -------------------------------------------
+                //                  Login
+                $("#dropbtn").mouseenter(function() {
+                    $(this).css("background-color", "blue");
+                    $("#drop-content").show();
+                    $("#dropbtn").click(function() {
+                        $("#drop-content").hide();
+                        $("#dropbtn").css("background-color", "rgb(26, 98, 215)");
+                    });
+                });
+
+                $("#drop-content").mouseleave(function() {
+                    $("#drop-content").hide();
+                    $("#dropbtn").css("background-color", "rgb(26, 98, 215)");
+                });
+
+                $("#submit").click(function() {
+                    var email = $("#memberNo").val();
+                    var password = $("#pw").val();
+                   
+                    if (email == "admin") {
+                        if (password == "admin") {
+                            alert("Login Successful, Welcome Admin!");
+                            window.location.href='Administrator.html';
+                            $("#drop-content").hide();
+                        } else { alert("Wrong Password. If you forget password, click forget password."); }
+                        
+                    } else if (email == "operator1") {
+                        if (password == 123456) {
+                           alert("Login Successful, Welcome Operator! Please change your password.");
+                           window.location.href='OperatorSetPsw.html';
+                        }  else if(password == 112233){
+                            window.location.href='Operator.html';
+                        } else { alert("Wrong Password. If you forget password, click forget password."); }
+
+                    } else if (email == "operator2") {
+                        if (password == 123456) {
+                           alert("Login Successful, Welcome Operator! Please change your password.");
+                           window.location.href='OperatorSetPsw.html';
+                        }  else if(password == 112233){
+                            window.location.href='Operator.html';
+                        } else { alert("Wrong Password. If you forget password, click forget password."); }
+
+                    } else if (email == "william@gmail.com" || email == "william") {
+                        if (password == "12345678") {
+                            alert("Login Successful, Welcome " + "William");
+                            $("#dropbtn").val("Welocme, " + "William");
+                            $("#drop-content").html("<b><label id='uNameLabel'>" + "William" + '</label></b>&nbsp&nbsp<a href="index.html">Log out</a><br><br>');
+                            $("#drop-content").append("<input type='button' id='nUserBtn' value='Manage My Account.' />");
+                        } else { alert("Wrong Password. If you forget password, click forget password."); } 
+                    
+                    } else if (email == "kim@gmail.com" || email == "kim") {
+                        if (password == "87654321") {
+                            alert("Login Successful, Welcome " + "Kim");
+                            $("#dropbtn").val("Welocme, " + "Kim");
+                            $("#drop-content").html("<b><label id='uNameLabel'>" + "Kim" + '</label></b>&nbsp&nbsp<a href="index.html">Log out</a>');
+                            $("#drop-content").append("<input type='button' id='nUserBtn' value='Manage My Account.' />");
+                        } else { alert("Wrong Password. If you forget password, click forget password."); } 
+                    } else {
+                        alert("Wrong Username Or Password. You may not a Member yet. Please Register.")
+                    }
+
+                    $("#nUserBtn").click(function() {
+                        window.location.href='Normal_User.html';
+                    });
+
+                });
+
+                // -------------------------------------------
+                //                  Search
+                $("#search").keyup(function(){
+                    $("table tr").hide().filter(":contains('"+ $(this).val() +"')").show();
+                });
+
+                // -------------------------------------------
+                //                  Check Status
+                $(".fRecord").click(function() {
+                    if ( $("#dropbtn").val() == "Member") {
+                        alert("Please Login First.");
+                    } else {
+                        var status = $(this).children(".status").text();
+                        var fNo = $(this).children(".fNo").text();
+                        var depAir = $(this).children(".depAir").text();
+                        var desAir = $(this).children(".desAir").text();
+                        var depDT = $(this).children(".depDT").text();
+                        var desDT = $(this).children(".desDT").text();
+                        var price = $(this).children(".price").text();
+
+                        if (status == "Cancelled" || status == "Arrived") {
+                            alert("This Flight is already Cancelled or Arrived!");
+                        } else if (status == "Available") {
+                            // -------------------------------------------
+                            //                  Book Seat Page
+                            $("#changToBugSeat").css("display", "none");
+                            $("#bugSeat").css("display", "block");
+
+                            $("#fFNo").val(fNo);
+                            $("#fDepAir").val(depAir);
+                            $("#fDesAir").val(desAir);
+                            $("#fDepDT").val(depDT);
+                            $("#fDesDT").val(desDT);
+                            $("#fPrice").val("HK$" + price);
+
+                            let seat = 0, meal = 0;
+                            $('input[name="seat"]').on("click", function() {
+                                seat = parseInt($('input[name="seat"]:checked').val());
+                            });
+                            $('input[name="meal"]').on("click", function() {
+                                meal = parseInt($('input[name="meal"]:checked').val());
+                            });
+                            $("#total").mouseenter(function() {
+                                let total = parseInt(price) + seat + meal;
+                                $("#total").val("HK$" + total);
+                            });
+                        }
+                    }
+                });
+                // -------------------------------------------
+                //                  Book Seat Sumbit
+                $("#bookSeatBtn").click(function() {
+                    $("#confSeat").css("display", "block");
+                    $("#bugSeat").css("display", "none");
+
+                    $("#cfFNo").val($("#fFNo").val());
+                    $("#cfDepAir").val($("#fDepAir").val());
+                    $("#cfDesAir").val($("#fDesAir").val());
+                    $("#cfDepDT").val( $("#fDepDT").val());
+                    $("#cfDesDT").val($("#fDesDT").val());
+                    $("#cfSeat").val($('input[name="seat"]:checked').next('label:first').html());
+                    $("#cfMeal").val($('input[name="meal"]:checked').next('label:first').html());
+                    $("#ctotal").val($("#total").val());
+                });
+                // -------------------------------------------
+                //                  Book Seat Back to Index
+                $("#bookSeatBack").click(function() {
+                    $("#changToBugSeat").css("display", "block");
+                    $("#bugSeat").css("display", "none");
+                });
+                // -------------------------------------------
+                //                  Confirm Book Seat And Pay
+                $("#cbookSeatBtn").click(function() {
+                    // alert("This will take payment with the credit card you entered when you signed up.");
+                    if (confirm("If you want to add a credit card. Please click Yes.\nIf not needed. Please click No, will completely the Payment.") == true) {
+                        $("#payment").css("display", "block");
+                        $("#confSeat").css("display", "none");
+                    } else {
+                        $("#changToBugSeat").css("display", "block");
+                        $("#confSeat").css("display", "none");
+                    }
+                });
+                // -------------------------------------------
+                //                  Payment To Index
+                $("#paymentBtn").click(function() {
+                    $("#changToBugSeat").css("display", "block");
+                    $("#payment").css("display", "none");
+                });
+                // -------------------------------------------
+                //                  Confirm Book Seat Page Back to Book Seat Page
+                $("#cbookSeatBack").click(function() {
+                    $("#bugSeat").css("display", "block");
+                    $("#confSeat").css("display", "none");
+                });
+            });
+
+            // -------------------------------------------
+            //                  Image Loop
+            var images = ["images/Kansai.jpg", "images/Shanghai_Pudong.jpg", "images/Taoyuan.jpg"]
+            var index = 0;
+            setInterval(function() {
+                if (index === images.length) {
+                    index = 0;
+                }
+                document.getElementById("image").src = images[index];
+                index++;
+            }, 3000);
+        </script>
+        
+        <style>
+            th,td {
+                border: 1px solid;
+            }
+	p {text-align: center;}
+        </style>
+        
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body>
+        
+        <div id="header">
+            <img src="images/Logo.png" width="75" height="75"/>
+            <h1>IVE AIRLINES</h1>
+            
+            <div id="dropdown">                
+                <input type="button" id="dropbtn" value="status: 【Visitor】" />
+                <p id="welcome"></p>
+                <div id="drop-content">
+                    <h3>Member Login</h3>
+                    <form>
+                        <fieldset>
+                            <br>
+                            <input type="text" id="memberNo" placeholder="Email Address" size="30" /> <br>
+                            <input type="password" id="pw" placeholder="Password" size="30"/> <br>
+                            <br>
+                            <input type="button" id="submit" value="Login" />
+                        </fieldset>
+                        <a href="ForgetPosswd.html">Forget Password</a> <br> <br>
+                        Not a member yet? <a href="Register.html">Join Member</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div id="changToBugSeat">
+            <div id="content">
+                <div id="mainImage">
+                    <img src="images/Taoyuan.jpg" id="image">
+                </div>
+            </div>
+    
+            <div class="searchBox">
+                <div id="searchH">
+                    <input type="search" results="5" id="search" name="search" placeholder="What do you want to seach?" size="50"/>
+                    <input type="button" value="Search" id="searchBtn" />
+                </div>
+            </div>
+    
+            <div id="main">
+                <div id="main-table">
+                    <table border="2">
+                        <tr>
+                            <th>Flight Number</th>
+                            <th>Departure Airport</th>
+                            <th>Destination Airport</th>
+                            <th>Departure Date & Time</th>
+                            <th>Arrival Date & Time</th>
+                            <th>Estimated Ticket Price (HK$)</th>
+                            <th>Status</th>
+                        </tr>
+    
+                        <tr class="fRecord">
+                            <td>CI0904</td>
+                            <td>Hong Kong</td>
+                            <td>Taipei (Taoyuan)</td>
+                            <td>11:05 21 OCT</td>
+                            <td>12:55 21 OCT</td>
+                            <td>1700</td>
+                            <td class="status">Cancelled</td>
+                        </tr>
+    
+                        <tr class="fRecord">
+                            <td>CI0910</td>
+                            <td>Hong Kong</td>
+                            <td>Taipei (Taoyuan)</td>
+                            <td>13:30 21 OCT</td>
+                            <td>15:25 21 OCT</td>
+                            <td>1780</td>
+                            <td class="status">Arrived</td>
+                        </tr>
+    
+                        <tr class="fRecord">
+                            <td>CI0915</td>
+                            <td>Shang Hai</td>
+                            <td>Hong Kong</td>
+                            <td>13:05 25 OCT</td>
+                            <td>17:05 25 OCT</td>
+                            <td>2700</td>
+                            <td class="status">Arrived</td>
+                        </tr>
+    
+                        <tr class="fRecord">
+                            <td>CI0920</td>
+                            <td>Japan</td>
+                            <td>Hong Kong</td>
+                            <td>10:05 25 OCT</td>
+                            <td>11:05 25 OCT</td>
+                            <td>1600</td>
+                            <td class="status">Arrived</td>
+                        </tr>
+    
+                        <tr class="fRecord">
+                            <td>CI0921</td>
+                            <td>Japan</td>
+                            <td>Hong Kong</td>
+                            <td>11:05 27 OCT</td>
+                            <td>21:05 27 OCT</td>
+                            <td>3700</td>
+                            <td class="status">Cancelled</td>
+                        </tr>
+    
+                        <tr class="fRecord">
+                            <td>CI0922</td>
+                            <td>Hong Kong</td>
+                            <td>Shang Hai</td>
+                            <td>09:05 27 OCT</td>
+                            <td>19:05 27 OCT</td>
+                            <td>3500</td>
+                            <td class="status">Cancelled</td>
+                        </tr>
+    
+                        <tr class="fRecord">
+                            <td>CI0934</td>
+                            <td>Shang Hai</td>
+                            <td>Hong Kong</td>
+                            <td>06:05 28 OCT</td>
+                            <td>17:05 28 OCT</td>
+                            <td>1600</td>
+                            <td class="status">Arrived</td>
+                        </tr>
+    
+                        <tr class="fRecord">
+                            <td>CI0976</td>
+                            <td>Shang Hai</td>
+                            <td>Japan</td>
+                            <td>10:05 28 OCT</td>
+                            <td>12:05 28 OCT</td>
+                            <td>1700</td>
+                            <td class="status">Arrived</td>
+                        </tr>
+    
+                        <tr class="fRecord">
+                            <td>CI0995</td>
+                            <td>Shang Hai</td>
+                            <td>Japan</td>
+                            <td>11:05 30 OCT</td>
+                            <td>12:05 30 OCT</td>
+                            <td>1760</td>
+                            <td class="status">Arrived</td>
+                        </tr>
+    
+                        <tr class="fRecord">
+                            <td class="fNo">CI1005</td>
+                            <td class="depAir">Hong Kong</td>
+                            <td class="desAir">Taipei (Taoyuan)</td>
+                            <td class="depDT">11:05 5 DEC</td>
+                            <td class="desDT">13:05 5 DEC</td>
+                            <td class="price">1700</td>
+                            <td class="status">Available</td>
+                        </tr>
+    
+                        <tr class="fRecord">
+                            <td class="fNo">CI1018</td>
+                            <td class="depAir">Taipei (Taoyuan)</td>
+                            <td class="desAir">Hong Kong</td>
+                            <td class="depDT">13:30 5 DEC</td>
+                            <td class="desDT">15:25 5 DEC</td>
+                            <td class="price">1780</td>
+                            <td class="status">Available</td>
+                        </tr>
+    
+                        <tr class="fRecord">
+                            <td class="fNo">CI1022</td>
+                            <td class="depAir">Hong Kong</td>
+                            <td class="desAir">Shang Hai</td>
+                            <td class="depDT">06:30 6 DEC</td>
+                            <td class="desDT">09:15 6 DEC</td>
+                            <td class="price">5100</td>
+                            <td class="status">Available</td>
+                        </tr>
+    
+                        <tr class="fRecord">
+                            <td class="fNo">CI1037</td>
+                            <td class="depAir">Shang Hai</td>
+                            <td class="desAir">Hong Kong</td>
+                            <td class="depDT">12:00 6 DEC</td>
+                            <td class="desDT">14:45 6 DEC</td>
+                            <td class="price">5680</td>
+                            <td class="status">Available</td>
+                        </tr>
+    
+                        <tr class="fRecord">
+                            <td class="fNo">CI1095</td>
+                            <td class="depAir">Hong Kong</td>
+                            <td class="desAir">Japan (Kansai)</td>
+                            <td class="depDT">12:30 8 DEC</td>
+                            <td class="desDT">16:00 8 DEC</td>
+                            <td class="price">5270</td>
+                            <td class="status">Available</td>
+                        </tr>
+    
+                        <tr class="fRecord">
+                            <td class="fNo">CI1099</td>
+                            <td class="depAir">Japan (Kansai)</td>
+                            <td class="desAir">Hong Kong</td>
+                            <td class="depDT">18:10 8 DEC</td>
+                            <td class="desDT">21:40 8 DEC</td>
+                            <td class="price">5870</td>
+                            <td class="status">Available</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div id="foot">
+                <p>Copyright (c) the Vocational Training Council 2022. All rights reserved.</p>
+            </div>
+        </div>
+
+        <div id="bugSeat">
+            <form id="bsform">
+                <fieldset>
+                    <h2 class="fs-title">Book Your Seat</h2>
+
+                    <label>Flight Number: </label>
+                    <input type="text" id="fFNo" value="" readonly /> <br><br>
+
+                    <label>Departure Airport: </label>
+                    <input type="text" id="fDepAir" value="" readonly /> <br><br>
+
+                    <label>Destination Airport: </label>
+                    <input type="text" id="fDesAir" value="" readonly /> <br><br>
+
+                    <label>Departure Date & Time: </label>
+                    <input type="text" id="fDepDT" value="" readonly /> <br><br>
+
+                    <label>Destination Date & Time: </label>
+                    <input type="text" id="fDesDT" value="" readonly /> <br><br>
+
+                    <label>Estimated Ticket Price: </label>
+                    <input type="text" id="fPrice" value="" readonly /> <br><br>
+                </fieldset>
+
+                <fieldset>
+                    <h2 class="fs-title">Select Your Seat</h2>
+
+                    <label>Fix a Seat</label> <br>
+                    <input type="radio" id="eClass" name="seat" class="seat" value="0" />
+                    <label>Economy Class</label>
+                    <input type="radio" id="bClass" name="seat" class="seat" value="500" />
+                    <label>Business Class</label>
+                    <input type="radio" id="fClass" name="seat" class="seat" value="1500" />
+                    <label>First class</label>
+                    
+                    <br><br> 
+
+                    <label>Reserve the Meal</label> <br>
+                    <input type="radio" id="mYes" name="meal" class="meal" value="100" />
+                    <label>Yes</label>
+                    <input type="radio" id="mNo" name="meal" class="meal" value="0" />
+                    <label>No</label>
+
+                    <br><br> 
+                    <label>Total: </label> <br>
+                    <input type="text" id="total" readonly value=""/>
+
+                    <input type="button" id="bookSeatBtn" value="Sumbit"/>
+                    <input type="button" id="bookSeatBack" value="Back"/>
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="confSeat">
+            <form id="bsform">
+                <fieldset>
+                    <h2 class="fs-title">Confirm Your Seat</h2>
+
+                    <label>Flight Number: </label>
+                    <input type="text" id="cfFNo" value="" readonly /> <br><br>
+
+                    <label>Departure Airport: </label>
+                    <input type="text" id="cfDepAir" value="" readonly /> <br><br>
+
+                    <label>Destination Airport: </label>
+                    <input type="text" id="cfDesAir" value="" readonly /> <br><br>
+
+                    <label>Departure Date & Time: </label>
+                    <input type="text" id="cfDepDT" value="" readonly /> <br><br>
+
+                    <label>Destination Date & Time: </label>
+                    <input type="text" id="cfDesDT" value="" readonly /> <br><br>
+
+                    <label>Seat Type: </label>
+                    <input type="text" id="cfSeat" value="" readonly /> <br><br>
+
+                    <label>Meal: </label>
+                    <input type="text" id="cfMeal" value="" readonly /> <br><br>
+
+                    <label>Total: </label>
+                    <input type="text" id="ctotal" value="" readonly/>  <br><br>
+
+                    <input type="button" id="cbookSeatBtn" value="Pay"/>
+                    <input type="button" id="cbookSeatBack" value="Modify"/>
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="payment">
+            <form id="bsform">
+                <fieldset>
+                    <h2 class="fs-title">Payment Datils</h2>
+                    <input type="radio" name="payment" value="visa" class="payment"><img src="images/visa.png" width="35" height="20"/>Visa</input>
+                    <input type="radio" name="payment" value="master" class="payment"><img src="images/mastercatd.png" width="35" height="20"/>Mastercard</input> <br>
+                    <input type="text" id="cardNo" placeholder="Card Number"> <br>
+                    <img src="images/card.png" width="35" height="25"/><br>
+                    <input type="text" id="cvc" placeholder="Card CVC"> <br>
+                    <img src="images/calendar.png" width="35" height="20"/> <br>
+                    <input type="month" id="cardDate">
+    
+                    <input type="button" name="next" id="paymentBtn" value="Submit" />
+                </fieldset>
+            </form>
+        </div>    
+    </body>
+</html>

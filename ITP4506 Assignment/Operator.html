@@ -1,0 +1,607 @@
+<html>
+    <head>
+        <title>IVE Airline Operator Page</title>
+        <script type="text/javascript" src="jslib/jquery-1.11.1.js"></script>
+        <script type="text/javascript" language="javascript">
+            $(document).ready(function() {
+                // -------------------------------------------
+                //                Check First time Login
+                var isFirstLogin = true;
+                if (isFirstLogin = true) {
+                    alert("This is your first time login. You need to modify your password first.");
+                    window.location.href='OperatorSetPsw.html';
+                    isFirstLogin = false;
+                } else {
+
+                }
+
+                // -------------------------------------------
+                //                HightLight
+                $("table tr:nth-child(even)").addClass("striped");
+                $("tr").mouseover(function(){
+                    $(this).addClass("over");
+                });
+
+                $("tr").mouseout(function(){
+                    $(this).removeClass("over");
+                });
+
+
+                // -------------------------------------------
+                //                  Login
+                $("#dropbtn").mouseenter(function() {
+                    $(this).css("background-color", "blue");
+                    $("#drop-content").show();
+                    $("#dropbtn").click(function() {
+                        $("#drop-content").hide();
+                        $("#dropbtn").css("background-color", "rgb(26, 98, 215)");
+                    });
+                });
+
+                $("#drop-content").mouseleave(function() {
+                    $("#drop-content").hide();
+                    $("#dropbtn").css("background-color", "rgb(26, 98, 215)");
+                });
+
+                // -------------------------------------------
+                //              Operator Function: Flight
+                $("#admin-fm").click(function() {
+                    $("#main").css("display", "flex");
+                    $("#main2").css("display", "none");
+                });
+
+                $(".fRecord").on('click', function() {
+                    $("#admin-air").css("display", "none");
+                    $("#editFlight").css("display", "block");
+
+                    var currentRow = $(this).closest("tr");
+                    var col1 = currentRow.find(".fNo").html();
+                    var col2 = currentRow.find(".depAir").html();
+                    var col3 = currentRow.find(".desAir").html();
+                    var col4 = currentRow.find(".depDT").html();
+                    var col5 = currentRow.find(".desDT").html();
+                    var col6 = currentRow.find(".price").html();
+                    var col7 = currentRow.find(".status").html();
+                    
+                    $("#fFNo").val(col1);
+                    $("#fDepAir").val(col2);
+                    $("#fDesAir").val(col3);
+                    $("#fDepDT").val(col4);
+                    $("#fDesDT").val(col5);
+                    $("#fPrice").val(col6);
+                    $("#fStatus").val(col7);
+
+                    $("#adminBtn").click(function() {
+                        currentRow.find(".fNo").html($("#fFNo").val());
+                        currentRow.find(".depAir").html($("#fDepAir").val());
+                        currentRow.find(".desAir").html($("#fDesAir").val());
+                        currentRow.find(".depDT").html($("#fDepDT").val());
+                        currentRow.find(".desDT").html($("#fDesDT").val());
+                        currentRow.find(".price").html($("#fPrice").val());
+                        currentRow.find(".status").html($("#fStatus").val());
+
+                        $("#admin-air").css("display", "block");
+                        $("#editFlight").css("display", "none");
+                    });
+
+                    $("#adminBack").click(function() {
+                        $("#admin-air").css("display", "block");
+                        $("#editFlight").css("display", "none");
+                    });
+                });
+
+                // -------------------------------------------
+                //              Operator Function: Add Flight
+                $("#addBtnF").click(function() {
+                    $("#admin-air").css("display", "none");
+                    $("#editFlight").css("display", "block");
+                    $("#editFlight h2").text("Add the Flight");
+                });
+
+                $("#adminBtn").click(function() {
+                    $("#myFTable tr:last").after("<tr><td>" + $("#fFNo").val()
+                                                        + "</td><td>" + $("#fDepAir").val()
+                                                        + "</td><td>" + $("#fDesAir").val()
+                                                        + "</td><td>" + $("#fDepDT").val()
+                                                        + "</td><td>" + $("#fDesDT").val()
+                                                        + "</td><td>" + $("#fPrice").val()
+                                                        + "</td><td>" + $("#fStatus").val()
+                                                        + "</td></tr>");
+                    $("#admin-air").css("display", "block");
+                    $("#editFlight").css("display", "none");
+                });
+
+                $("#adminBack").click(function() {
+                        $("#admin-air").css("display", "block");
+                        $("#editFlight").css("display", "none");
+                });
+
+                // -------------------------------------------
+                //              Operator Function: Accounr
+                $("#admin-am").click(function() {
+                    $("#addBtnA").css("display", "flex");
+                    $("#main").css("display", "none");
+                    $("#main2").css("display", "flex");
+                    $("#admin-account").css("display", "flex");
+                });
+
+                $(".aRecord").on('click', function() {
+                    $("#admin-air").css("display", "none");
+                    $("#editAccount").css("display", "block");
+
+                    var currentRow = $(this).closest("tr");
+                    var col1 = currentRow.find(".aName").html();
+                    var col2 = currentRow.find(".aPasswd").html();
+                    var col3 = currentRow.find(".aEmail").html();
+                    var col4 = currentRow.find(".aPermis").html();
+                    var col5 = currentRow.find(".aSex").html();
+                    var col6 = currentRow.find(".alName").html();
+                    var col7 = currentRow.find(".afName").html();
+                    var col8 = currentRow.find(".aDOB").html();
+                    var col9 = currentRow.find(".aCity").html();
+                    var col10 = currentRow.find(".aPhone").html();
+                    
+                    $("#aAName").val(col1);
+                    $("#aAPasswd").val(col2);
+                    $("#aAEmail").val(col3);
+                    $("#aAPermis").val(col4);
+                    $("#aASex").val(col5);
+                    $("#aAlName").val(col6);
+                    $("#aAfName").val(col7);
+                    $("#aADOB").val(col5);
+                    $("#aACity").val(col6);
+                    $("#aAPhone").val(col7);
+
+                    $("#adminABtn").click(function() {
+                        currentRow.find(".aName").html($("#aAName").val());
+                        currentRow.find(".aPasswd").html($("#aAPasswd").val());
+                        currentRow.find(".aEmail").html($("#aAEmail").val());
+                        currentRow.find(".aPermis").html($("#aAPermis").val());
+                        currentRow.find(".aSex").html($("#aASex").val());
+                        currentRow.find(".alName").html($("#aAlName").val());
+                        currentRow.find(".afName").html($("#aAfName").val());
+                        currentRow.find(".aDOB").html($("#aADOB").val());
+                        currentRow.find(".aCity").html($("#aACity").val());
+                        currentRow.find(".aPhone").html($("#aAPhone").val());
+
+                        $("#admin-air").css("display", "block");
+                        $("#editAccount").css("display", "none");
+                    });
+
+                    $("#adminABack").click(function() {
+                        $("#admin-air").css("display", "block");
+                        $("#editAccount").css("display", "none");
+                    });
+                });
+
+                // -------------------------------------------
+                //              Operator Function: Add Account
+                $("#addBtnA").click(function() {
+                    $("#admin-air").css("display", "none");
+                    $("#editAccount").css("display", "block");
+                    $("#editAccount h2").text("Add the Account");
+                });
+
+                $("#adminABtn").click(function() {
+                    $("#myATable tr:last").after("<tr><td>"
+                                                        + $("#aAName").val()
+                                                        + "</td><td>" + $("#aAPasswd").val()
+                                                        + "</td><td>" + $("#aAEmail").val()
+                                                        + "</td><td>" + $("#aAPermis").val()
+                                                        + "</td><td>" + $("#aASex").val()
+                                                        + "</td><td>" + $("#aAlName").val()
+                                                        + "</td><td>" + $("#aAfName").val()
+                                                        + "</td><td>" + $("#aADOB").val()
+                                                        + "</td><td>" + $("#aACity").val()
+                                                        + "</td><td>" + $("#aAPhone").val()
+                                                        + "</td></tr>");
+                    $("#admin-air").css("display", "block");
+                    $("#editAccount").css("display", "none");
+                });
+
+                $("#adminABack").click(function() {
+                        $("#admin-air").css("display", "block");
+                        $("#editAccount").css("display", "none");
+                });
+
+                // -------------------------------------------
+                //                  Search
+                $("#search").keyup(function(){
+                    $("table tr").hide().filter(":contains('"+ $(this).val() +"')").show();
+                });
+
+                // -------------------------------------------
+            });
+
+            var images = ["images/Kansai.jpg", "images/Shanghai_Pudong.jpg", "images/Taoyuan.jpg"]
+            var index = 0;
+            setInterval(function() {
+                if (index === images.length) {
+                    index = 0;
+                }
+                document.getElementById("image").src = images[index];
+                index++;
+            }, 3000);
+        </script>
+        
+        <style>
+            th,td {
+                border: 1px solid;
+                
+            }
+
+            .table {
+                margin-left: 150px;
+            }
+p {text-align: center;}
+        </style>
+        
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body>
+        <div id="header">
+            <img src="images/Logo.png" width="75" height="75"/>
+            <h1>IVE Airline</h1>
+            
+            <div id="dropdown">                
+                <input type="button" id="dropbtn" value="Welcome, Operator" />
+                <p id="welcome"></p>
+                <div id="drop-content">
+                    <a href="index.html">Logout</a>
+                    <h3 id='admin-h3'>Operator Function:</h3>
+                    <input type='button' class='admin-btn' id='admin-am' value='Account Management'/>
+                    <input type='button' class='admin-btn' id='admin-fm' value='Flight Management'/>
+                </div> 
+            </div>
+        </div>
+
+        <div id="admin-air">
+            <div id="content">
+                <div id="mainImage">
+                    <img src="images/Taoyuan.jpg" id="image">
+                </div>
+            </div>
+    
+            <div class="searchBox">
+                <div id="searchH">
+                    <input type="search" results="5" id="search" name="search" placeholder="What do you want to seach?" size="50"/>
+                    <input type="button" value="Search" id="searchBtn" />
+                </div>
+            </div>
+    
+            <div id="main">
+                <div id="main-table">
+                    <table border="2" id="myFTable">
+                        <tbody>
+                            <tr>
+                                <th>Flight Number</th>
+                                <th>Departure Airport</th>
+                                <th>Destination Airport</th>
+                                <th>Departure Date & Time</th>
+                                <th>Arrival Date & Time</th>
+                                <th>Estimated Ticket Price (HK$)</th>
+                                <th>Status</th>
+                            </tr>
+        
+                            <tr class="fRecord">
+                                <td class="fNo">CI0904</td>
+                                <td class="depAir">Hong Kong</td>
+                                <td class="desAir">Taipei (Taoyuan)</td>
+                                <td class="depDT">11:05 21 OCT</td>
+                                <td class="desDT">12:55 21 OCT</td>
+                                <td class="price">1700</td>
+                                <td class="status">Cancelled</td>
+                            </tr>
+        
+                            <tr class="fRecord">
+                                <td class="fNo">CI0910</td>
+                                <td class="depAir">Hong Kong</td>
+                                <td class="desAir">Taipei (Taoyuan)</td>
+                                <td class="depDT">13:30 21 OCT</td>
+                                <td class="desDT">15:25 21 OCT</td>
+                                <td class="price">1780</td>
+                                <td class="status">Arrived</td>
+                            </tr>
+        
+                            <tr class="fRecord">
+                                <td class="fNo">CI0915</td>
+                                <td class="depAir">Shang Hai</td>
+                                <td class="desAir">Hong Kong</td>
+                                <td class="depDT">13:05 25 OCT</td>
+                                <td class="desDT">17:05 25 OCT</td>
+                                <td class="price">2700</td>
+                                <td class="status">Arrived</td>
+                            </tr>
+        
+                            <tr class="fRecord">
+                                <td class="fNo">CI0920</td>
+                                <td class="depAir">Japan</td>
+                                <td class="desAir">Hong Kong</td>
+                                <td class="depDT">10:05 25 OCT</td>
+                                <td class="desDT">11:05 25 OCT</td>
+                                <td class="price">1600</td>
+                                <td class="status">Arrived</td>
+                            </tr>
+        
+                            <tr class="fRecord">
+                                <td class="fNo">CI0921</td>
+                                <td class="depAir">Japan</td>
+                                <td class="desAir">Hong Kong</td>
+                                <td class="depDT">11:05 27 OCT</td>
+                                <td class="desDT">21:05 27 OCT</td>
+                                <td class="price">3700</td>
+                                <td class="status">Cancelled</td>
+                            </tr>
+        
+                            <tr class="fRecord">
+                                <td class="fNo">CI0922</td>
+                                <td class="depAir">Hong Kong</td>
+                                <td class="desAir">Shang Hai</td>
+                                <td class="depDT">09:05 27 OCT</td>
+                                <td class="desDT">19:05 27 OCT</td>
+                                <td class="price">3500</td>
+                                <td class="status">Cancelled</td>
+                            </tr>
+        
+                            <tr class="fRecord">
+                                <td class="fNo">CI0934</td>
+                                <td class="depAir">Shang Hai</td>
+                                <td class="desAir">Hong Kong</td>
+                                <td class="depDT">06:05 28 OCT</td>
+                                <td class="desDT">17:05 28 OCT</td>
+                                <td class="price">1600</td>
+                                <td class="status">Arrived</td>
+                            </tr>
+        
+                            <tr class="fRecord">
+                                <td class="fNo">CI0976</td>
+                                <td class="depAir">Shang Hai</td>
+                                <td class="desAir">Japan</td>
+                                <td class="depDT">10:05 28 OCT</td>
+                                <td class="desDT">12:05 28 OCT</td>
+                                <td class="price">1700</td>
+                                <td class="status">Arrived</td>
+                            </tr>
+        
+                            <tr class="fRecord">
+                                <td class="fNo">CI0995</td>
+                                <td class="depAir">Shang Hai</td>
+                                <td class="desAir">Japan</td>
+                                <td class="depDT">11:05 30 OCT</td>
+                                <td class="desDT">12:05 30 OCT</td>
+                                <td class="price">1760</td>
+                                <td class="status">Arrived</td>
+                            </tr>
+        
+                            <tr class="fRecord">
+                                <td class="fNo">CI1005</td>
+                                <td class="depAir">Hong Kong</td>
+                                <td class="desAir">Taipei (Taoyuan)</td>
+                                <td class="depDT">11:05 5 DEC</td>
+                                <td class="desDT">13:05 5 DEC</td>
+                                <td class="price">1700</td>
+                                <td class="status">Available</td>
+                            </tr>
+        
+                            <tr class="fRecord">
+                                <td class="fNo">CI1018</td>
+                                <td class="depAir">Taipei (Taoyuan)</td>
+                                <td class="desAir">Hong Kong</td>
+                                <td class="depDT">13:30 5 DEC</td>
+                                <td class="desDT">15:25 5 DEC</td>
+                                <td class="price">1780</td>
+                                <td class="status">Available</td>
+                            </tr>
+        
+                            <tr class="fRecord">
+                                <td class="fNo">CI1022</td>
+                                <td class="depAir">Hong Kong</td>
+                                <td class="desAir">Shang Hai</td>
+                                <td class="depDT">06:30 6 DEC</td>
+                                <td class="desDT">09:15 6 DEC</td>
+                                <td class="price">5100</td>
+                                <td class="status">Available</td>
+                            </tr>
+        
+                            <tr class="fRecord">
+                                <td class="fNo">CI1037</td>
+                                <td class="depAir">Shang Hai</td>
+                                <td class="desAir">Hong Kong</td>
+                                <td class="depDT">12:00 6 DEC</td>
+                                <td class="desDT">14:45 6 DEC</td>
+                                <td class="price">5680</td>
+                                <td class="status">Available</td>
+                            </tr>
+        
+                            <tr class="fRecord">
+                                <td class="fNo">CI1095</td>
+                                <td class="depAir">Hong Kong</td>
+                                <td class="desAir">Japan (Kansai)</td>
+                                <td class="depDT">12:30 8 DEC</td>
+                                <td class="desDT">16:00 8 DEC</td>
+                                <td class="price">5270</td>
+                                <td class="status">Available</td>
+                            </tr>
+        
+                            <tr class="fRecord">
+                                <td class="fNo">CI1099</td>
+                                <td class="depAir">Japan (Kansai)</td>
+                                <td class="desAir">Hong Kong</td>
+                                <td class="depDT">18:10 8 DEC</td>
+                                <td class="desDT">21:40 8 DEC</td>
+                                <td class="price">5870</td>
+                                <td class="status">Available</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="addBtnF"><input type="button" id="add" value="+" /></div>
+            </div>
+            <div id="foot">
+                <p>Copyright (c) the Vocational Training Council 2022. All rights reserved.</p>
+            </div>
+        </div>
+
+        <div id="editFlight">
+            <form id="bsform">
+                <fieldset>
+                    <h2 class="fs-title">Edit the Flight</h2>
+
+                    <label>Flight Number: </label>
+                    <input type="text" id="fFNo" value="" /> <br><br>
+
+                    <label>Departure Airport: </label>
+                    <input type="text" id="fDepAir" value="" /> <br><br>
+
+                    <label>Destination Airport: </label>
+                    <input type="text" id="fDesAir" value="" /> <br><br>
+
+                    <label>Departure Date & Time: </label>
+                    <input type="text" id="fDepDT" value="" /> <br><br>
+
+                    <label>Destination Date & Time: </label>
+                    <input type="text" id="fDesDT" value="" /> <br><br>
+
+                    <label>Estimated Ticket Price: </label>
+                    <input type="text" id="fPrice" value="" /> <br><br>
+
+                    <label>Status: </label>
+                    <input type="text" id="fStatus" value="" /> <br><br>
+
+                    <input type="button" id="adminBtn" value="Sumbit"/>
+                    <input type="reset" id="adminDel" value="Delete"/>
+                    <input type="button" id="adminBack" value="Back"/> 
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="main2">
+            <div id="admin-account">
+                <table border="2" id="myATable">
+                    <tbody>
+                        <tr>
+                            <th>Username</th>
+                            <th>Password</th>
+                            <th>Email</th>
+                            <th>Permission</th>
+                            <th>Gender</th>
+                            <th>Last Name</th>
+                            <th>First Name</th>
+                            <th>Day of Birth</th>
+                            <th>City</th>
+                            <th>Phone</th>
+                        </tr>
+        
+                        <tr class="aRecord">
+                            <td class="aName">admin</td>
+                            <td class="aPasswd">admin</td>
+                            <td class="aEmail">admin@iveairline.com</td>
+                            <td class="aPermis">0</td>
+                            <td class="aSex">Mr.</td>
+                            <td class="alName">admin</td>
+                            <td class="afName">admin</td>
+                            <td class="aDOB">admin</td>
+                            <td class="aCity">admin</td>
+                            <td class="aPhone">admin</td>
+                        </tr>
+        
+                        <tr class="aRecord">
+                            <td class="aName">operator1</td>
+                            <td class="aPasswd">e162ty7a</td>
+                            <td class="aEmail">op1@iveairline.com</td>
+                            <td class="aPermis">1</td>
+                            <td class="aSex">Ms</td>
+                            <td class="alName">CHEN</td>
+                            <td class="afName">HO</td>
+                            <td class="aDOB">1989-5-20</td>
+                            <td class="aCity">HK</td>
+                            <td class="aPhone">96217781</td>
+                        </tr>
+        
+                        <tr class="aRecord">
+                            <td class="aName">operator2</td>
+                            <td class="aPasswd">s8w5pq9a</td>
+                            <td class="aEmail">op2@iveairline.com</td>
+                            <td class="aPermis">1</td>
+                            <td class="aSex">Mr</td>
+                            <td class="alName">LI</td>
+                            <td class="afName">Chi</td>
+                            <td class="aDOB">1997-8-7</td>
+                            <td class="aCity">HK</td>
+                            <td class="aPhone">56298235</td>
+                        </tr>
+        
+                        <tr class="aRecord">
+                            <td class="aName">William</td>
+                            <td class="aPasswd">12345678</td>
+                            <td class="aEmail">william@gmail.com</td>
+                            <td class="aPermis">3</td>
+                            <td class="aSex">Mr</td>
+                            <td class="alName">CHOR</td>
+                            <td class="afName">WaiKuen</td>
+                            <td class="aDOB">2002-1-1</td>
+                            <td class="aCity">HK</td>
+                            <td class="aPhone">53281013</td>
+                        </tr>
+        
+                        <tr class="aRecord">
+                            <td class="aName">Kim</td>
+                            <td class="aPasswd">87654321</td>
+                            <td class="aEmail">kim@gmail.com</td>
+                            <td class="aPermis">3</td>
+                            <td class="aSex">Mr</td>
+                            <td class="alName">CHENG</td>
+                            <td class="afName">ChiKit</td>
+                            <td class="aDOB">2000-2-2</td>
+                            <td class="aCity">HK</td>
+                            <td class="aPhone">67321161</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="addBtnA"><input type="button" id="add" value="+" /></div>
+        </div>
+
+        <div id="editAccount">
+            <form id="bsform">
+                <fieldset>
+                    <h2 class="fs-title">Edit the Account</h2>
+
+                    <label>Username: </label>
+                    <input type="text" id="aAName" value="" /> <br><br>
+
+                    <label>Password: </label>
+                    <input type="text" id="aAPasswd" value="" /> <br><br>
+
+                    <label>Email: </label>
+                    <input type="text" id="aAEmail" value="" /> <br><br>
+
+                    <label>Permission: </label>
+                    <input type="text" id="aAPermis" value="" /> <br><br>
+
+                    <label>Gender: </label>
+                    <input type="text" id="aASex" value="" /> <br><br>
+
+                    <label>Last Name: </label>
+                    <input type="text" id="aAlName" value="" /> <br><br>
+
+                    <label>First Name: </label>
+                    <input type="text" id="aAfName" value="" /> <br><br>
+
+                    <label>Day of Birth: </label>
+                    <input type="text" id="aADOB" value="" /> <br><br>
+
+                    <label>City: </label>
+                    <input type="text" id="aACity" value="" /> <br><br>
+
+                    <label>Phone: </label>
+                    <input type="text" id="aAPhone" value="" /> <br><br>
+
+                    <input type="button" id="adminABtn" value="Sumbit"/>
+                    <input type="reset" id="adminADel" value="Delete"/>
+                    <input type="button" id="adminABack" value="Back"/>
+                </fieldset>
+            </form>
+        </div>
+    </body>
+</html>

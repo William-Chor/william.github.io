@@ -1,0 +1,44 @@
+<body>
+    <link rel="stylesheet" href="css/style.css" />
+    <div class="lg-container">
+      <form action="Operator1.html"  id="bsform" name="lg-form" method="post">
+            <fieldset>
+                <h2 class="fs-title">Modify password</h2>
+
+                <label for="pwdId">New password:</label> 
+                <input type="password" name="password" id="password" placeholder="New password"/> <br><br>
+
+                <label for="newPwdId"  style="float:left">Verify password:</label>
+                <input type="password" name="newPassword" id="newpassword" placeholder="Verify password" /> <br><br>
+
+                <button type="submit" id="login">Submit</button>
+            </fieldset>
+      </form>
+    </div>   
+
+    <script>
+        var lgform=document.getElementById("lg-form");
+        var password=document.getElementById("password");
+        var newPassword=document.getElementById("newpassword");
+        lgform.onsubmit=function(){
+            if(password.value=="" || password.value==null){
+                alert("The password can not be empty.");
+                return false;
+            }else if(newPassword.value=="" || newPassword.value==null){
+                alert("Please input the password again.");
+                return false;
+            }else if(password.value!=newPassword.value){
+                alert("The two passwords are different, please re-enter");
+                password.value="";
+                newPassword.value="";
+                return false;
+            }else{
+                newPswd = newPassword.value;
+                alert("Your password has been changed.");
+                window.location.href='index.html';
+                return true;
+            }
+        }
+        </script>
+    </body>
+
