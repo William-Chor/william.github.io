@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+    <head>
+        <title>FC Barcelona Club</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <style type="text/css">
+            fieldset {
+                border-radius: 10px;
+            }
+            body {
+                background-image: url('../image/bg1.webp');
+                background-size:cover;
+            }
+            fieldset {
+                color: white;
+            }
+
+        </style>
+
+        <script language="javascript" type="text/javascript">
+            function print_result() {
+                var nickname = document.f1.nickname.value;
+                var firstname = document.f1.firstname.value;
+                alert("Hello " + nickname + " " + firstname + "\n Welcome You!");
+
+                var email = document.f1.email.value;
+
+                var dob = document.f1.dob.value;
+
+                var gender;
+                if (document.f1.gender[0].checked)
+                    gender = document.f1.gender[0].value;
+                else
+                    gender = document.f1.gender[1].value;
+
+                var index = document.f1.team.selectedIndex;
+                var team = document.f1.team.options[index].value;
+
+                var position = ""
+                var position_len = document.f1.position.length;
+                for (var i = 0; i < position_len; i++) {
+                    if (document.f1.position[i].checked)
+                        position = position + document.f1.position[i].value + " ";
+                }
+                alert("The following is the confirmation information: \n" + "Gender: " + gender + "\nDOB: " + dob + "\nEmail: " + email + "\nFavorite Team: " + team + "\nPosition: "  + position);
+
+            }
+
+            function function1() {
+                window.location.replace("home.html");
+                return false;
+            }
+        </script>
+
+    </head>
+
+    <body>
+        <h1 style="color: white;">Welcome to the FC Barcelona Club!</h1>
+        
+        <form id="f1" name="f1" onSubmit="print_result()" action="../index.html">
+            <fieldset>
+                <legend>Personal Details</legend>
+                Nick Name: 
+                <input type="text" name="nickname" required="required"/> 
+                <br />
+                First Name: 
+                <input type="text" name="firstname" /> 
+                <br />
+                Gender: 
+                <input type="radio" name="gender" value="M" required="required" checked="checked"/> 
+                Male  
+                <input type="radio" name="gender" value="F" />
+                Female 
+                <br />
+                Date of Birth: 
+                <input type="date" name="dob" required="required"/> 
+                <br />
+                Email: 
+                <input type="email" name="email" required="required" />
+            </fieldset>
+            <fieldset>
+                <legend>Team Information</legend>
+                Favorite Player:
+                <select name="team">
+                    <option value="">-- Select One Team --</option>
+                    <optgroup label="Goalkeepers">
+                        <option>Marc-André ter Stegen</option>
+                        <option>Neto</option>
+                    </optgroup>
+                    <optgroup label="Defenders">
+                        <option>Sergiño Dest</option>
+                        <option>Gerard Piqué</option>
+                        <option>Ronald Araújo</option>
+                        <option>Dani Alves</option>
+                        <option>Clément Lenglet</option>
+                        <option>Jordi Alba</option>
+                        <option>Óscar Mingueza</option>
+                        <option>Samuel Umtiti</option>
+                        <option>Eric García</option>
+                    </optgroup>
+                    <optgroup label="Midfielders">
+                        <option>Sergio Busquets</option>
+                        <option>Riqui Puig</option>
+                        <option>Nico González</option>
+                        <option>Pedri</option>
+                        <option>Sergi Roberto</option>
+                        <option>Frenkie de Jong</option>
+                    </optgroup>
+                    <optgroup label="Forwards">
+                        <option>Ousmane Dembélé</option>
+                        <option>Memphis Depay</option>
+                        <option>Ansu Fati</option>
+                        <option>Adama Traoré</option>
+                        <option>Martin Braithwaite</option>
+                        <option>Luuk de Jong</option>
+                        <option>Ferran Torres</option>
+                        <option>Pierre-Emerick Aubameyang</option>
+                    </optgroup>
+                </select>
+                <br />
+                    Your Position: 
+                    <input type="checkbox" name="position" value="GK" />
+                    Goalkeepers
+                    <input type="checkbox" name="position" value="D" />
+                    Defenders
+                    <input type="checkbox" name="position" value="M" />
+                    Midfielders
+                    <input type="checkbox" name="position" value="F" />
+                    Forwards
+            </fieldset>
+            <br />
+            <input type="submit" value="Submit" />
+            <input type="reset" value="Reset" />
+        </form>
+    </body>
+</html>
