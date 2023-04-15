@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+
+{% block title %}NP Post{% endblock %}
+
+{% block topbar %}What do you want to post?{% endblock %}
+
+{% block content %}
+<form class="form-sty" action="/postProcess" method="POST" enctype="multipart/form-data">
+    <fieldset>
+        <h2>New a Post</h2>
+
+        <label>Title:</label>
+        <input type="text" name="title" /> <br>
+
+        <label>Content:</label>
+        <textarea id="textarea" cols="100" rows="30" name="content" > </textarea>
+
+        <input class="submit-button" type="submit" value="Submit"/>
+    </fieldset>
+</form>
+{% endblock %}

@@ -1,0 +1,118 @@
+<html>
+    <head>
+        <title>Number Plate</title>
+
+        <link rel="stylesheet" href="../static/css/style.css" />
+        <script src="https://kit.fontawesome.com/9604405ea9.js" crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+        <div class="header-top">
+            <div class="top-logo">
+                <a href="#home" class="top-bar-button" id="logo-button"><b id="font-text">NP </b><b id="back-text">Detector</b></a>
+
+                <div class="top-other-button">
+                    <a href="#news" class="top-bar-button">News</a>
+                    <a href="#forum" class="top-bar-button">Forum</a>
+                    <a href="/index" class="top-bar-button">About</a>
+                    <a href="/login" class="top-bar-button" id="state">{{ state }}</a>
+                </div>
+            </div>
+        </div>
+
+        <header class="bgimg" id="home">
+            <div class="home-img-text">
+                <span>Welcome to the Number Plate Detector</span><br>
+            </div>
+        </header>
+
+        <br><br>
+        <div class="container" id="news">
+            <br><br>
+            <h2 class="center">News of Hong Kong</h2>
+            <input type="button" value="Add News" id="add-news-btn"/>
+            
+            <div id="news-box" class="news-box-transition">
+                <div class="new-box-item anim">News 1</div>
+                <div class="new-box-item anim">News 2</div>
+                <div class="new-box-item anim">News 3</div>
+                <div class="new-box-item new-box-item-2 anim">News 4</div>
+                <div class="new-box-item new-box-item-2 anim">News 5</div>
+                <div class="new-box-item new-box-item-2 anim">News 6</div>
+                <div class="new-box-item new-box-item-3 anim">News 7</div>
+                <div class="new-box-item new-box-item-3 anim">News 8</div>
+                <div class="new-box-item new-box-item-3 anim">News 9</div>
+
+                <a id="prev" class="prev-next" onclick="plusSlides(-1)">&#10094;</a>
+                <a id="next" class="prev-next" onclick="plusSlides(1)">&#10095;</a>
+            </div>
+            
+            <div style="text-align:center">
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+                <span class="dot" onclick="currentSlide(4)"></span>
+                <span class="dot" onclick="currentSlide(5)"></span>
+                <span class="dot" onclick="currentSlide(6)"></span>
+                <span class="dot" onclick="currentSlide(7)"></span>
+            </div>
+        </div>
+
+        <br><br><br>
+        <div class="container" id="forum">
+            <h2 class="center">The Forum</h2>
+            <input type="button" value="Add Post" class="add-button"  id="add-post-btn" onclick="window.location.href='/new-post'"/> <br><br>
+
+            <div id="forum-box" class="forum-box">
+                {% for post in posts %}
+                    <div class="forum-box-item"  id="{{ post[0] }}" onclick="window.location.href='/post/{{ post[0] }}'">
+                        <p class="title">Title: {{ post[2] }}</p>
+                        <p>Contain:</p>
+                        <p>{{ post[3] }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </body>
+
+    <script>
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        // Next/previous controls
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        // Thumbnail image controls
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("new-box-item");
+            let dots = document.getElementsByClassName("dot");
+            if (n > slides.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = slides.length}
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex-1].style.display = "block";
+            slides[slideIndex-0].style.display = "block";
+            slides[slideIndex+1].style.display = "block";
+            if (slideIndex == 7) {slideIndex = 0;}
+            dots[slideIndex-1].className += " active";
+        }
+
+        let states = document.getElementById("state").innerText;
+        if (states == 'Admin') {
+            document.getElementById("add-news-btn").style.display = 'block';
+        } else if (states == "Login/SingUp") {
+            document.getElementById("add-post-btn").style.display = 'none';
+        }
+    </script>
+</html>
