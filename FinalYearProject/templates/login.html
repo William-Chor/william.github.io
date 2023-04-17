@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+
+{% block title %}NP Login{% endblock %}
+
+{% block topbar %}Welcome User{% endblock %}
+
+{% block content %}
+<form class="form-sty" action="/loginProcess" method="POST">
+    <fieldset>
+        <h2>Login</h2>
+        <input type="text" name="email" id="email" class="login-input" placeholder="Enter your email" /> <br>
+        <input type="password" name="password" id="passwd" class="login-input" placeholder="Enter your password" /> <br>
+        <div class="msg">{{ msg }}</div>
+        <a href="#" style="margin-top: 20px;">Forgot password?</a> <br>
+        <input type="submit" class="submit-button" value="Login" />
+        <p class="p-center">Don't have an account? <a href="/singup">Signup</a></p>
+    </fieldset>
+</form>
+
+{% endblock %}

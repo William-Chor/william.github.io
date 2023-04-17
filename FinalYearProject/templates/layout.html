@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+
+        <link rel="stylesheet" href="/static/css/style.css" />
+        <script src="https://kit.fontawesome.com/9604405ea9.js" crossorigin="anonymous"></script>
+        <link rel="icon" type="image/x-icon" href="../static/image/NPDetector_icon.png">
+    </head>
+
+    <body>
+        <nav class="header-top">
+            <div class="top-logo">
+                <a href="/" class="top-bar-button" id="logo-button"><b id="font-text">NP </b><b id="back-text">Detector</b></a>
+                <a href="#" class="top-bar-button"><b>- </b>{% block topbar %}{% endblock %}</a>
+
+                <div class="top-other-button">
+                    <!-- <a href="#news" class="top-bar-button">News</a>
+                    <a href="#forum" class="top-bar-button">Forum</a>
+                    <a href="/index" class="top-bar-button">About</a> -->
+                    <a href="/login" class="top-bar-button" id="state">{{ state }}</a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="content">
+            <BR><BR>
+            {% block content %}{% endblock %}
+        </div>
+
+        <!-- <footer>©2023 VIC IVE ST <a href="#">Contact US</a></footer> -->
+    </body>
+
+    {% block javascript %}{% endblock %}
+</html>

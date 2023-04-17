@@ -1,0 +1,187 @@
+<html>
+    <head>
+        <title>Number Plate</title>
+
+        <link rel="stylesheet" href="../static/css/style.css" />
+        <script src="https://kit.fontawesome.com/9604405ea9.js" crossorigin="anonymous"></script>
+        <link rel="icon" type="image/x-icon" href="../static/image/NPDetector_icon.png">
+    </head>
+
+    <body>
+        <div class="header-top">
+            <div class="top-logo">
+                <a href="#home" class="top-bar-button" id="logo-button"><b id="font-text">NP </b><b id="back-text">Detector</b></a>
+
+                <div class="top-other-button">
+                    <a href="#news" class="top-bar-button">News</a>
+                    <a href="#forum" class="top-bar-button">Forum</a>
+                    <a href="/index" class="top-bar-button">About</a>
+                    <a href="/login" class="top-bar-button" id="state">{{ state }}</a>
+                </div>
+            </div>
+        </div>
+
+        <header class="bgimg" id="home">
+            <div class="home-img-text">
+                <!-- <span>Welcome to the Number Plate Detector</span><br> -->
+            </div>
+        </header>
+
+        <br><br>
+        <div class="container" id="news">
+            <br><br>
+            <h2 class="center">News of Hong Kong</h2>
+            <input type="button" value="Add News" id="add-news-btn"/>
+            
+            <div id="news-box" class="news-box-transition">
+                <div class="new-box-item anim">
+                    <h2>邁巴赫S680</h2>
+                    <p><br>外觀：邁巴赫S680采用了S級轎車的設計風格，在前臉和車身各處都有著邁巴赫品牌的標志性元素。
+                        例如，它配備了更大尺寸的進氣格柵和前保險杠，以及邁巴赫專屬的車標和車輪設計。
+                        車身尺寸方面，邁巴赫S680相比標准的S級轎車略長一些，軸距也更長，提供更寬敞的內部空間。
+
+                        <br><br>內飾：邁巴赫S680的內飾采用了高檔材料和精細手工藝，享有豪華的氛圍。座椅、門板、方向盤和中控台等處都覆蓋了柔軟的真皮和豪華的木質飾板。
+                        車內還配備了一系列高科技設備，例如12.3英寸的數字儀表盤和12.8英寸的中央觸摸屏，提供多種功能和信息。
+                        
+						<br><br> 動力：邁巴赫S680采用了一款6.0升V12雙渦輪增壓發動機，最大輸出功率621馬力和最大扭矩1000牛·米，配備了9速自動變速器。
+                        這款車可以在4.5秒內從靜止加速到100公裡/小時，並且最高時速被限制在250公裡/小時。 
+					</p>
+                </div>
+                <div class="new-box-item anim">
+                    <h2>奔馳GT63S</h2>
+					<p><br>外觀：奔馳GT63S采用了AMG GT系列的設計風格，具有運動和動感的外觀。
+                        它的前臉有著大尺寸的進氣格柵和銳利的大燈組，車身線條流暢。車尾配備了大型擾流板和四出式排氣管，體現了它的高性能氣息。
+
+                        <br><br>內飾：奔馳GT63S的內飾同樣注重運動和豪華感。座椅、方向盤和中央扶手等處都覆蓋了高質量的真皮，儀表盤和中央控制台采用了數字化顯示和觸摸屏技術。
+                        該車還配備了多種高科技功能，例如語音識別和自適應巡航控制。
+                        
+                        <br><br>動力：奔馳GT63S搭載了一款4.0升V8雙渦輪增壓發動機，最大輸出功率630馬力和最大扭矩900牛·米，配備了9速自動變速器。
+                        這款車可以在3.2秒內從靜止加速到100公裡/小時，並且最高時速被限制在315公裡/小時。
+                    </p>
+                </div>
+                <div class="new-box-item anim">
+                    <h2>寶馬M3</h2>
+					<p><br>外觀：寶馬M3具有運動和動感的外觀，有著大尺寸的進氣格柵和銳利的大燈組，車身線條流暢。
+                        該車還配備了大型輪轂和運動套件，使其更具有視覺吸引力。
+
+                        <br><br>內飾：寶馬M3的內部設計與普通3系車型相似，但配備了更多的運動元素。座椅、方向盤和中央扶手等處都覆蓋了高質量的真皮，儀表盤和中央控制台采用了數字化顯示和觸摸屏技術。
+                        該車還配備了多種高科技功能，例如語音識別和自適應巡航控制。
+                        
+                        <br><br>動力：寶馬M3配備了一款3.0升直列六缸雙渦輪增壓發動機，最大輸出功率473馬力和最大扭矩550牛·米，配備了六速手動變速器或八速自動變速器。
+                        這款車可以在4.1秒內從靜止加速到100公裡/小時，並且最高時速被限制在250公裡/小時。
+					</p>
+                </div>
+                <div class="new-box-item new-box-item-2 anim">
+                    <h2>跑馬地-私家車-路線一</h2>
+					<p><br><li>試場閘口駛出</li>
+						<li>右轉荷塘道</li>
+						<li>左轉成和道</li>
+						<li>左轉景光街</li>
+						<li>左轉山光道</li>
+						<li>左轉聚文街</li>
+						<li>右轉成和道</li>
+						<li>右轉冬青道</li>
+						<li>左轉荷塘道</li>
+						<li>返回試場，報到處白界前停車</li>
+					</p>
+                </div>
+                <div class="new-box-item new-box-item-2 anim">
+                    <h2>跑馬地-私家車-路線二</h2>
+					<p><br><li>試場閘口駛出</li>
+						<li>右轉荷塘道</li>
+						<li>右轉成和道</li>
+						<li>左轉藍塘道</li>
+						<li>左轉黃泥涌道</li>
+						<li>左轉成和道</li>
+						<li>右轉冬青道</li>
+						<li>左轉荷塘道</li>
+						<li>返回試場，報到處白界前停車</li>
+					</p>
+                </div>
+                <div class="new-box-item new-box-item-2 anim">
+                    <h2>忠義街-私家車-路線一</h2>
+					<p><br><li>試場駛出 (考泊位S位)完成</li>
+						<li>沿忠義街</li>
+						<li>右轉孝民街</li>
+						<li>右轉忠孝街</li>
+						<li>右轉佛光街</li>
+						<li>右轉忠孝街</li>
+						<li>右轉孝民街</li>
+						<li>右轉忠義街(考斜路開車、掉頭)</li>
+					</p>
+                </div>
+                <div class="new-box-item new-box-item-3 anim">
+                    <h2>忠義街-私家車-路線二</h2>
+					<p><br><li>試場駛出 (考泊位S位) 完成</li>
+						<li>沿忠義街</li>
+						<li>右轉孝民街</li>
+						<li>右轉忠孝街</li>
+						<li>右轉迦密村街</li>
+						<li>右轉孝民街</li>
+						<li>左轉忠孝街</li>
+						<li>左轉孝民街</li>
+						<li>右轉忠義街 (考斜路開車、掉頭)</li>
+					</p>
+                </div>
+                <div class="new-box-item new-box-item-3 anim">
+                    <h2>石蔭-私家車-路線一</h2>
+					<p><br><li>左轉大白田街</li>
+						<li>右轉連接大白田街</li>
+						<li>左轉大隴街</li>
+						<li>左轉圍乪街</li>
+						<li>左轉石排街連接大白田街</li>
+						<li>左轉童子街</li>
+						<li>右轉梨木道</li>
+						<li>左轉返回試場</li>
+					</p>
+                </div>
+                <div class="new-box-item new-box-item-3 anim">
+                    <h2>石蔭-私家車-路線二</h2>
+					<p><br><li>左轉大白田街</li>
+						<li>左轉安捷街(考斜路開車)</li>
+						<li>右轉安捷里</li>
+						<li>左轉石排街</li>
+						<li>右轉安足街連接石梨街</li>
+						<li>左轉圍乪街</li>
+						<li>左轉石排街連接大白田街</li>
+						<li>左轉童子街</li>
+						<li>右轉梨木道</li>
+						<li>左轉返回試場</li>
+					</p>
+                </div>
+
+                <a id="prev" class="prev-next" onclick="plusSlides(-1)">&#10094;</a>
+                <a id="next" class="prev-next" onclick="plusSlides(1)">&#10095;</a>
+            </div>
+            
+            <div style="text-align:center">
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+                <span class="dot" onclick="currentSlide(4)"></span>
+                <span class="dot" onclick="currentSlide(5)"></span>
+                <span class="dot" onclick="currentSlide(6)"></span>
+                <span class="dot" onclick="currentSlide(7)"></span>
+            </div>
+        </div>
+
+        <br><br><br>
+        <div class="container" id="forum">
+            <h2 class="center">The Forum</h2>
+            <input type="button" value="Add Post" class="add-button"  id="add-post-btn" onclick="window.location.href='/new-post'"/> <br><br>
+
+            <div id="forum-box" class="forum-box">
+                {% for post in posts %}
+                    <div class="forum-box-item"  id="{{ post[0] }}" onclick="window.location.href='/post/{{ post[0] }}'">
+                        <b><p class="title">{{ post[2] }}</p></b>
+                        <p>{{ post[3] }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- <footer>©2023 VIC IVE ST <a href="#">Contact US</a></footer> -->
+    </body>
+
+    <script src="/static/javascript/home.js"></script>
+</html>

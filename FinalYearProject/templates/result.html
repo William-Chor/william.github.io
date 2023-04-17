@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+
+{% block title %}Number Plate Result{% endblock %}
+
+{% block topbar %}Result of Number Plate{% endblock %}
+
+{% block content %}
+    <BR><BR>
+    <div class="forum-box-item">
+        <h2>File Uploaded Successfully</h2>
+        <p>Number Plate is: {{name}}</p>
+        {% if safe %}
+            <p>The number Plate is safe.</p>
+        {% else %}
+            <p>The number Plate is not safe.</p>
+            <p>Reason is {{ reason }}</p>
+        {% endif %}
+    </div>
+{% endblock %}

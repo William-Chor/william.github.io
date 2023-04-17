@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+
+{% block title %}NP SingUp{% endblock %}
+
+{% block topbar %}Welocme You New User{% endblock %}
+
+{% block content %}
+<form class="form-sty" action="/singupProcess" method="POST" onsubmit="return validateForm()">
+    <fieldset>
+        <h2>SingUp</h2>
+        <input type="text" name="email" id="email" class="login-input" placeholder="Enter your email" /> <br>
+        <input type="text" name="numberP" id="numberP" class="login-input" placeholder="Enter your car number plate" /> <br>
+        <input type="password" name="password" id="passwd" class="login-input" placeholder="Create a password" /> <br>
+        <input type="password" name="cpasswd" id="cpasswd" class="login-input" placeholder="Confirm your password" /> <br>
+        <div class="msg">{{ msg }}</div>
+        <input type="submit" class="submit-button" value="Singup" />
+        <p class="p-center">Already have an account <a href="/login">Login</a></p>
+    </fieldset>
+</form>
+{% endblock %}
+
+{% block javascript %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/static/javascript/singup.js"></script>
+{% endblock %}

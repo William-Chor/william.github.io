@@ -1,0 +1,47 @@
+{% extends 'layout.html' %}
+
+{% block title %}Post{% endblock %}
+
+{% block topbar %}{{ post[2] }}{% endblock %}
+
+{% block content %}
+    <BR><BR>
+    <div class="forum-box-item post-box">
+        <h2>{{ post[2] }}</h2>
+        <p>{{ post[5] }}, {{ post[6] }}</p>
+        <p id="post-content">{{ post[3]|safe }}</p>
+    </div>
+
+    <div class="forum-box-item">
+        <h2>Reply</h2>
+        <div id="replyInfo">
+            <p id="no-reply" style="display: block;">No reply now. Do you want to reply?</p>
+        </div>
+
+        <div class="forum-box-item" id="reply-input" style="display: none;">
+            <div id="set-reply-style">
+
+            </div>
+            <form action="/reply" method="POST">
+                <input type="hidden" name="postID" value="{{ post[0] }}" >
+                <textarea cols="209" rows="15" name="reply"></textarea>
+                <div align="center">
+                    <input type="submit" value="Submit" id="submit" class="form-btn"/>
+                </div>
+            </form>
+        </div>
+
+        <div class="reply-box" style="display: none;">
+            {% for message in messages %}
+                    <div class="forum-box-item"  id="{{ post[0] }}">
+                        <p class="reply-content">{{ message[3] }}</p>
+                    </div>
+            {% endfor %}
+        </div>
+        <input type="button" id="reply" value="Reply" class="back-button" onclick="showReply()"/>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script src="/static/javascript/post.js"></script>
+{% endblock %}

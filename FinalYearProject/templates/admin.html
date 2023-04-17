@@ -1,0 +1,125 @@
+{% extends 'layout.html' %}
+
+{% block title %}Admin Page{% endblock %}
+
+{% block topbar %}Admin Function{% endblock %}
+
+{% block content %}
+<h2>Admin Page</h2>
+<div class="admin-function">
+    <div id="admin-user" class="admin-block" onmouseover="hideBlock()">
+        <h2>User Management</h2>
+        <i class="fa-regular fa-address-card fa-10x"></i>
+    </div>
+
+    <div id="admin-news" class="admin-block" onmouseover="hideBlock()">
+        <h2>News Management</h2>
+        <i class="fa-regular fa-newspaper fa-10x"></i>
+    </div>
+</div>
+
+<div class="admin-function">
+    <div id="admin-post" class="admin-block" onmouseover="hideBlock()">
+        <h2>Post Management</h2>
+        <i class="fa-regular fa-comments fa-10x"></i>
+    </div>
+
+    <div id="admin-blacklist" class="admin-block" onmouseover="hideBlock()">
+        <h2>Black List Management</h2>
+        <i class="fa-solid fa-ban fa-10x"></i>
+    </div>
+</div>
+
+<!--User Management-->
+<div id="manag-user" style="display: none;" class="management">
+    <input type="button" value="Add User" onclick="addUser()" class="form-btn"/>
+    <h2 id="managTitle">Management User</h2>
+    <!--User Management, Add User-->
+    <div id="addUser" class="forum-box-item" style="display: none;">
+        <h2>Add New User</h2>
+        <form action="/adminUserProcess" method="POST">
+            <p>Username: <input type="text" name="username" class="login-input" /></p>
+            <p>Email: <input type="text" name="email" class="login-input" /></p>
+            <p>Number Plate: <input type="text" name="numberP" class="login-input" /></p>
+            <p>Password: <input type="password" name="password" class="login-input" /></p>
+            <input type="submit" class="submit-button" value="Submit" />
+        </form>
+    </div>
+    <!--User Management, Show All the Users-->
+    {% for user in users %}
+    <div class="forum-box-item admin-box" onclick="editData(this)" id="{{ user[0] }}">
+        <form action="/userProcess" method="POST">
+            <input type="hidden" name="id" value="{{ user[0] }}">
+            <BR>Username: <label>{{ user[1] }}</label> <BR/>
+            <BR>Email: <label>{{ user[2] }}</label> <BR/>
+            <BR>Number Plate: <label>{{ user[3] }}</label> <BR/>
+            <BR>Password: <label>{{ user[4] }}</label> <BR/>
+            <div align="center">
+                <BR>
+                <input type="reset" value="Reset" id="admin-post-reset" class="form-btn" />
+                <input type="submit" value="Submit" id="admin-user-submit" class="form-btn"/>
+            </div>
+        </form>
+    </div>
+    {% endfor %}
+    <input type="button" class="back-button" value="Back" id="back" onclick="showBack()"/>
+</div>
+
+<!--Post Management-->
+<div id="manag-post" style="display: none;" class="management">
+    <!--Post Management, Add Post-->
+    <input type="button" value="Add Post" onclick="window.location.href='/new-post'" class="form-btn"/>
+    <h2 id="managTitle">Management Post</h2>
+    <!--Post Management, Loop all the Post-->
+    {% for post in posts %}
+    <div class="forum-box-item admin-box post" onclick="editData(this)" id="{{ post[0] }}">
+        <form action="/postUpdate" method="POST">
+            <input type="hidden" name="id" value="{{ post[0] }}">
+            <BR>Title: <label>{{ post[2] }}</label> <BR/>
+            <BR>Content: <label class="post-content">{{ post[3] }}</label> <BR/>
+            <div align="center">
+                <BR>
+                <input type="reset" value="Reset" id="admin-post-reset" class="form-btn"  onclick="deleteData()"/>
+                <input type="submit" value="Submit" id="admin-post-submit" class="form-btn"/>
+            </div>
+        </form>
+    </div>
+    {% endfor %}
+    <input type="button" class="back-button" value="Back" id="back" onclick="showBack()"/>
+</div>
+
+<!--Black List Management-->
+<div id="manag-blackList" style="display: none;" class="management">
+    <input type="button" value="Add Black List" onclick="addBlackList()" class="form-btn"/>
+    <h2 id="managTitle">Management Black List</h2>
+    <!--Black List Management, Add Black List-->
+    <div id="addBlackList" class="forum-box-item" style="display: none;">
+        <h2>Add New Black List</h2>
+        <form action="/blackListProcess" method="POST">
+            <p>Number Plate: <input type="text" name="numberP" class="login-input" /></p>
+            <p>Reason: <input type="text" name="reason" class="login-input" /></p>
+            <input type="submit" class="submit-button" value="Submit" />
+        </form>
+    </div>
+    <!--Black List Management, Show All the Black List-->
+    {% for list in blackList %}
+    <div class="forum-box-item admin-box" onclick="editData(this)" id="{{ list[0] }}">
+        <form action="/listUpdate" method="POST">
+            <input type="hidden" name="id" value="{{ list[0] }}">
+            <BR>Number Plate: <label>{{ list[1] }}</label> <BR/>
+            <BR>Reason: <label>{{ list[2] }}</label> <BR/>
+            <div align="center">
+                <BR>
+                <input type="reset" value="Reset" id="admin-post-reset" class="form-btn" />
+                <input type="submit" value="Submit" id="admin-user-submit" class="form-btn"/>
+            </div>
+        </form>
+    </div>
+    {% endfor %}
+    <input type="button" class="back-button" value="Back" id="back" onclick="showBack()"/>
+</div>
+{% endblock %}
+
+{% block javascript %}
+    <script src="/static/javascript/admin.js"></script>
+{% endblock %}
